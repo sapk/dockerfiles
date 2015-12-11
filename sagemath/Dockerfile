@@ -13,7 +13,7 @@ RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /et
     gcc g++ gfortran libgfortran \
     openssl-dev readline-dev \
     pango-dev cairo-dev \
-    fonts-extra	ttf-dejavu \
+    ttf-dejavu \
     imagemagick
  && rm /var/cache/apk/*
 #dejavu-sans-fonts dejavu-serif-fonts dejavu-sans-mono-fonts vlgothic-fonts
