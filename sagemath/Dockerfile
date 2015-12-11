@@ -5,7 +5,8 @@ MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 ENV SAGE_VERSION 6.7
 
 # Better use of fonts-extra
-RUN apk -U --no-progress upgrade \
+RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /etc/apk/repositories \
+ && apk -U --no-progress upgrade \
  && apk -U --no-progress add \
     sudo curl \
     tar m4 bzip2 make patch perl-extutils-makemaker python git \
