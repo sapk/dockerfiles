@@ -1,5 +1,5 @@
 # A docker file to run http://www.sagemath.org/
-FROM alpine:edge
+FROM alpine:latest
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 ENV SAGE_VERSION 6.7
@@ -13,7 +13,7 @@ RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /et
     gcc g++ gfortran libgfortran \
     openssl-dev readline-dev \
     pango-dev cairo-dev \
-    ttf-dejavu \
+    fonts-extra@testing ttf-dejavu@testing \
     imagemagick
  && rm /var/cache/apk/*
 #dejavu-sans-fonts dejavu-serif-fonts dejavu-sans-mono-fonts vlgothic-fonts
