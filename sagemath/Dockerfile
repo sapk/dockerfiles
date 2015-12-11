@@ -6,6 +6,8 @@ ENV SAGE_VERSION 6.7
 
 # Better use of fonts-extra
 RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /etc/apk/repositories \
+ && apk --help \
+ && apk update && apk upgrade \
  && apk -U --no-progress upgrade \
  && apk -U --no-progress add \
     ca-certificates sudo curl \
