@@ -9,11 +9,11 @@ RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /et
  && apk -U --no-progress upgrade \
  && apk -U --no-progress add \
     ca-certificates sudo curl \
-    tar m4 bzip2 make patch perl-extutils-makemaker python git \
+    tar m4 bzip2 make patch perl-extutils-makemaker@testing python git \
     gcc g++ gfortran libgfortran \
     openssl-dev readline-dev \
     pango-dev cairo-dev \
-    fonts-extra@testing ttf-dejavu@testing \
+    fonts-extra@testing ttf-dejavu \
     imagemagick
  && rm /var/cache/apk/*
 #dejavu-sans-fonts dejavu-serif-fonts dejavu-sans-mono-fonts vlgothic-fonts
