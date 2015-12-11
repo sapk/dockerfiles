@@ -1,5 +1,5 @@
 # A docker file to run http://www.sagemath.org/
-FROM alpine:latest
+FROM alpine:edge
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 ENV SAGE_VERSION 6.7
@@ -8,7 +8,7 @@ ENV SAGE_VERSION 6.7
 RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /etc/apk/repositories \
  && apk -U --no-progress upgrade \
  && apk -U --no-progress add \
-    sudo curl \
+    ca-certificates sudo curl \
     tar m4 bzip2 make patch perl-extutils-makemaker python git \
     gcc g++ gfortran libgfortran \
     openssl-dev readline-dev \
