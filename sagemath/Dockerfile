@@ -1,4 +1,7 @@
 # A docker file to run http://www.sagemath.org/
+# Inspired from  : - https://github.com/swenson/docker-sage/blob/master/Dockerfile
+#                  - https://github.com/gogits/gogs/blob/master/Dockerfile
+#                  - https://github.com/sagemath/docker
 FROM alpine:latest
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
@@ -6,8 +9,7 @@ ENV SAGE_VERSION 6.7
 
 # Better use of fonts-extra
 RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /etc/apk/repositories \
- && apk --help \
- && apk update && apk upgrade \
+ && apk update \
  && apk -U --no-progress upgrade \
  && apk -U --no-progress add \
     ca-certificates sudo curl \
