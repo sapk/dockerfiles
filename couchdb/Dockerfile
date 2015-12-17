@@ -15,12 +15,12 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
  && apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
     ca-certificates sudo curl gnupg tar gzip \
-    make gcc g++ perl python \
+    make gcc g++ perl python autoconf\
     erlang erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-sasl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap \
     icu-dev curl-dev \
  && wget http://ftp.mozilla.org/pub/js/js185-1.0.0.tar.gz \
  && mkdir -p /usr/src/mozjs && tar -xzf js185-1.0.0.tar.gz -C /usr/src/mozjs && rm js185-1.0.0.tar.gz \
- && cd /usr/src/mozjs && ./configure && make --quiet && make install && cd \
+ && cd /usr/src/mozjs/js/src && autoconf && mkdir tmp && cd tmp && ../configure && make --quiet && make install && cd \
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
  && mkdir -p /usr/src/couchdb && tar -xzf couchdb.tar.gz -C /usr/src/couchdb --strip-components=1 && rm couchdb.tar.gz couchdb.tar.gz.asc \
@@ -28,10 +28,10 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
  && apk --no-progress --force del sudo curl tar make gcc g++ icu-dev curl-dev	gnupg \
  && rm /var/cache/apk/* && rm -rf /usr/src/couchdb /usr/src/mozjs
  
-#Missing mozjs
+#Missing mozjs /usr/local/
 # ./configure --with-js-lib=/usr/lib   --with-js-include=/usr/include/mozjs
 #TODO determine if we can remove also erlang
-# TODO ADD sign verification
+# TODO ADD sign verification 
 # && curl -sSL https://www.apache.org/dist/couchdb/KEYS -o KEYS \
 # && gpg --import KEYS && gpg --verify couchdb.tar.gz.asc \ 
 
