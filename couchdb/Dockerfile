@@ -20,7 +20,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
     icu-dev curl-dev \
  && wget http://ftp.mozilla.org/pub/js/js185-1.0.0.tar.gz \
  && mkdir -p /usr/src/mozjs && tar -xzf js185-1.0.0.tar.gz -C /usr/src/mozjs && rm js185-1.0.0.tar.gz \
- && cd /usr/src/mozjs/js/src && autoconf && mkdir tmp && cd tmp && ../configure && make --quiet && make install && cd \
+ && cd /usr/src/mozjs/js-1.8.5/js/src && autoconf && mkdir tmp && cd tmp && ../configure && make --quiet && make install && cd \
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
  && mkdir -p /usr/src/couchdb && tar -xzf couchdb.tar.gz -C /usr/src/couchdb --strip-components=1 && rm couchdb.tar.gz couchdb.tar.gz.asc \
