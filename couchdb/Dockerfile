@@ -25,7 +25,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
  && mkdir -p /usr/src/couchdb && tar -xzf couchdb.tar.gz -C /usr/src/couchdb --strip-components=1 && rm couchdb.tar.gz couchdb.tar.gz.asc \
- && cd /usr/src/couchdb && ./configure --with-js-lib=/usr/lib && make --quiet && make install && cd \
+ && cd /usr/src/couchdb && ./configure --with-js-lib=/usr/lib --with-js-include=/usr/local/include/mozjs && make --quiet && make install && cd \
  && apk --no-progress --force del sudo curl tar make gcc g++ icu-dev curl-dev	gnupg \
  && rm /var/cache/apk/* && rm -rf /usr/src/couchdb /usr/src/mozjs
  
