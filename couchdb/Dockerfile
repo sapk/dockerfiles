@@ -14,7 +14,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
  && echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
  && apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    ca-certificates sudo curl gnupg tar gzip zip bash\
+    ca-certificates sudo curl gnupg tar gzip zip bash \
     make gcc g++ perl python autoconf m4 \
     erlang erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-sasl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap \
     icu-dev curl-dev \
