@@ -9,10 +9,13 @@ MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 ENV COUCHDB_VERSION 1.6.1
 
 # CouchDB installation
-RUN apk -U --no-progress upgrade \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+ && echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+ && apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    ca-certificates sudo curl gnupg \
-    tar make gcc g++ \
+    ca-certificates sudo curl gnupg tar gzip \
+    make gcc g++ \
     erlang erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-sasl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap \
     icu-dev curl-dev \
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
