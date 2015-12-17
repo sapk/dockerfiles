@@ -16,8 +16,6 @@ RUN apk -U --no-progress upgrade \
     erlang icu-dev curl-dev\
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
- && curl -sSL https://www.apache.org/dist/couchdb/KEYS -o KEYS \
- && gpg --import KEYS && gpg --verify couchdb.tar.gz.asc \ 
  && mkdir -p /usr/src/couchdb && tar -xzf couchdb.tar.gz -C /usr/src/couchdb --strip-components=1 && rm couchdb.tar.gz couchdb.tar.gz.asc \
  && cd /usr/src/couchdb \
  && ./configure --with-js-lib=/usr/lib \
@@ -29,6 +27,9 @@ RUN apk -U --no-progress upgrade \
 #Missing mozjs
 # ./configure --with-js-lib=/usr/lib   --with-js-include=/usr/include/mozjs
 #TODO determine if we can remove also erlang
+# TODO ADD sign verification
+# && curl -sSL https://www.apache.org/dist/couchdb/KEYS -o KEYS \
+# && gpg --import KEYS && gpg --verify couchdb.tar.gz.asc \ 
 
 WORKDIR /var/lib/couchdb
 VOLUME ["/var/lib/couchdb", "/usr/local/var/log/couchdb", "/usr/local/etc/couchdb"]
