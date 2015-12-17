@@ -13,7 +13,7 @@ RUN apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
     ca-certificates sudo curl gnupg\
     tar make gcc g++ \
-    erlang icu-dev curl-dev\
+    erlang erlang-tools erlang-crypto erlang-erl-docgen	erlang-dev erlang-asn1 icu-dev curl-dev\
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
  && mkdir -p /usr/src/couchdb && tar -xzf couchdb.tar.gz -C /usr/src/couchdb --strip-components=1 && rm couchdb.tar.gz couchdb.tar.gz.asc \
@@ -31,8 +31,8 @@ RUN apk -U --no-progress upgrade \
 # && curl -sSL https://www.apache.org/dist/couchdb/KEYS -o KEYS \
 # && gpg --import KEYS && gpg --verify couchdb.tar.gz.asc \ 
 
-WORKDIR /var/lib/couchdb
-VOLUME ["/var/lib/couchdb", "/usr/local/var/log/couchdb", "/usr/local/etc/couchdb"]
+WORKDIR /usr/local/var/lib/couchdb
+VOLUME ["/usr/local/var/lib/couchdb", "/usr/local/var/log/couchdb", "/usr/local/etc/couchdb"]
 EXPOSE 5984
 
 ENTRYPOINT ["/usr/local/bin/couchdb"]
