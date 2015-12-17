@@ -11,9 +11,9 @@ ENV COUCHDB_VERSION 1.6.1
 # CouchDB installation
 RUN apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    ca-certificates sudo curl gnupg\
+    ca-certificates sudo curl gnupg \
     tar make gcc g++ \
-    erlang erlang-ssl erlang-erl-interface erlang-tools erlang-crypto erlang-erl-docgen	erlang-dev erlang-asn1 icu-dev curl-dev\
+    erlang erlang-public-key erlang-otp-mibs erlang-ssl erlang-erl-interface erlang-tools erlang-crypto erlang-erl-docgen	erlang-dev erlang-asn1 icu-dev curl-dev \
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
  && mkdir -p /usr/src/couchdb && tar -xzf couchdb.tar.gz -C /usr/src/couchdb --strip-components=1 && rm couchdb.tar.gz couchdb.tar.gz.asc \
@@ -21,7 +21,7 @@ RUN apk -U --no-progress upgrade \
  && ./configure --with-js-lib=/usr/lib \
  && make --quiet \
  && make install \
- && apk --no-progress --force del sudo curl tar make gcc g++ icu-dev curl-dev	gnupg\
+ && apk --no-progress --force del sudo curl tar make gcc g++ icu-dev curl-dev	gnupg \
  && rm /var/cache/apk/* && rm -rf /usr/src/couchdb
  
 #Missing mozjs
