@@ -13,7 +13,7 @@ RUN apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
     ca-certificates sudo curl gnupg\
     tar make gcc g++ \
-    erlang erlang-tools erlang-crypto erlang-erl-docgen	erlang-dev erlang-asn1 icu-dev curl-dev\
+    erlang erlang-ssl erlang-erl-interface erlang-tools erlang-crypto erlang-erl-docgen	erlang-dev erlang-asn1 icu-dev curl-dev\
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
  && mkdir -p /usr/src/couchdb && tar -xzf couchdb.tar.gz -C /usr/src/couchdb --strip-components=1 && rm couchdb.tar.gz couchdb.tar.gz.asc \
