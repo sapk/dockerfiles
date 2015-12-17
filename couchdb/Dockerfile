@@ -18,8 +18,8 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
     make gcc g++ perl python autoconf m4 \
     erlang erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-sasl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap \
     icu-dev curl-dev \
- && wget http://ftp.mozilla.org/pub/js/js185-1.0.0.tar.gz \
- && mkdir -p /usr/src/mozjs && tar -xzf js185-1.0.0.tar.gz -C /usr/src/mozjs --strip-components=1 && rm js185-1.0.0.tar.gz \
+ && wget http://ftp.mozilla.org/pub/mozilla.org/js/mozjs-24.2.0.tar.bz2 \
+ && mkdir -p /usr/src/mozjs && tar -xjf mozjs-24.2.0.tar.bz2 -C /usr/src/mozjs --strip-components=1 && rm js185-1.0.0.tar.gz \
  && cd /usr/src/mozjs/js/src && ./configure && make --quiet && make install && cd \
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
