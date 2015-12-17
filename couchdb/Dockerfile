@@ -14,10 +14,11 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
  && echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
  && apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    ca-certificates sudo curl gnupg tar gzip zip \
+    ca-certificates sudo curl gnupg tar gzip zip bash\
     make gcc g++ perl python autoconf m4 \
     erlang erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-sasl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap \
     icu-dev curl-dev \
+ && export SHELL=/bin/bash \
  && wget http://ftp.mozilla.org/pub/mozilla.org/js/mozjs-24.2.0.tar.bz2 \
  && mkdir -p /usr/src/mozjs && tar -xjf mozjs-24.2.0.tar.bz2 -C /usr/src/mozjs --strip-components=1 && rm mozjs-24.2.0.tar.bz2 \
  && cd /usr/src/mozjs/js/src && ./configure && make --quiet && make install && cd \
