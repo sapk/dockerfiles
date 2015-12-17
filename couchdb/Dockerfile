@@ -11,7 +11,7 @@ ENV COUCHDB_VERSION 1.6.1
 # CouchDB installation
 RUN apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    ca-certificates sudo curl gpg\
+    ca-certificates sudo curl gnupg\
     tar make gcc g++ \
     erlang icu-dev curl-dev\
  && curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz -o couchdb.tar.gz \
@@ -23,7 +23,7 @@ RUN apk -U --no-progress upgrade \
  && ./configure --with-js-lib=/usr/lib \
  && make --quiet \
  && make install \
- && apk --no-progress --force del sudo curl tar make gcc g++ icu-dev curl-dev gpg\
+ && apk --no-progress --force del sudo curl tar make gcc g++ icu-dev curl-dev	gnupg\
  && rm /var/cache/apk/* && rm -rf /usr/src/couchdb
  
 #Missing mozjs
