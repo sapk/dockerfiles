@@ -18,3 +18,5 @@ RUN git clone --depth 1 https://github.com/TurboGit/hubicfuse.git && cd hubicfus
     && ./configure && make && make install \
     && /usr/bin/install -c hubic_token /usr/local/bin/hubic_token \
     && cd .. && rm -rf hubicfuse
+
+CMD hubicfuse /mnt -o noauto_cache,sync_read,allow_other && /bin/sh
