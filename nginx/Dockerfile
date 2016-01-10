@@ -1,6 +1,7 @@
 # A docker file to run Nginx
 # Inspired from  :  - https://github.com/oren/alpine-nginx
-                    - https://github.com/nginxinc/docker-nginx
+#                   - https://github.com/nginxinc/docker-nginx
+
 FROM alpine:latest
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
