@@ -18,11 +18,12 @@ RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /et
     pango-dev cairo-dev \
     fonts-extra@testing ttf-dejavu \
     imagemagick \
+ && RUN groupadd sagemath && useradd --no-create-home --home-dir /ghost -g sagemath sagemath \
  && rm /var/cache/apk/*
 #dejavu-sans-fonts dejavu-serif-fonts dejavu-sans-mono-fonts vlgothic-fonts
 
-
-#TODO 
+USER sagemath
+#TODO
 # - add cheksum control
 # - move to a folder more like /app/sage
 RUN mkdir /app \
