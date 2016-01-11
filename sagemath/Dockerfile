@@ -27,7 +27,9 @@ USER sagemath
 #TODO
 # - add cheksum control
 # - move to a folder more like /app/sage
-RUN curl -Lso /app/sage-${SAGE_VERSION}.tar.gz http://www-ftp.lip6.fr/pub/math/sagemath/src/sage-${SAGE_VERSION}.tar.gz \
+RUN cd /app \
+ && curl -Lso /app/sage-${SAGE_VERSION}.tar.gz http://www-ftp.lip6.fr/pub/math/sagemath/src/sage-${SAGE_VERSION}.tar.gz \
+ && md5sum sage-${SAGE_VERSION}.tar.gz \
  && tar xvf /app/sage-${SAGE_VERSION}.tar.gz \
  && ls && cd sage-${SAGE_VERSION} && make \
  && rm /app/sage-${SAGE_VERSION}.tar.gz
