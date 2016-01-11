@@ -18,7 +18,7 @@ RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /et
     pango-dev cairo-dev \
     fonts-extra@testing ttf-dejavu \
     imagemagick \
- && adduser --system --no-create-home --home /app/sage-${SAGE_VERSION} --group sagemath \
+ && addgroup -S sagemath && adduser -S -H -h /app/sage-${SAGE_VERSION} -G sagemath sagemath \
  && rm /var/cache/apk/*
 #dejavu-sans-fonts dejavu-serif-fonts dejavu-sans-mono-fonts vlgothic-fonts
 
