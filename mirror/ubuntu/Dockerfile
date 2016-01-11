@@ -3,7 +3,7 @@ FROM alpine:latest
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 ENV SYNCMODE="archive" RSYNCSOURCE="rsync://rsync.archive.ubuntu.com/ubuntu" BASEDIR="/var/www/ubuntuarchive/"
-# Could use in realease mode SYNCMODE="releases" with RSYNCSOURCE="rsync://rsync.releases.ubuntu.com/releases"
+# Could use in release mode SYNCMODE="releases" with RSYNCSOURCE="rsync://rsync.releases.ubuntu.com/releases"
 
 COPY start.sh /
 
