@@ -11,7 +11,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
  && echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
  && echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
  && apk -U --no-progress upgrade \
- && apk -U --force --no-progress add openjdk8-jre@testing \
+ && apk -U --force --no-progress add openjdk8-jre-base@community \
  && rm -rf /var/cache/apk/*
 
 CMD ["/usr/bin/java", "-version"]
