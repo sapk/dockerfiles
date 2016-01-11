@@ -5,7 +5,7 @@
 FROM alpine:latest
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
-ENV SAGE_VERSION 6.7
+ENV SAGE_VERSION 6.10
 
 # Better use of fonts-extra
 RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /etc/apk/repositories \
@@ -26,10 +26,10 @@ RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /et
 # - add cheksum control
 # - move to a folder more like /app/sage
 RUN mkdir /app \
- && curl -Lso /app/sage-${SAGE_VERSION}.tar http://www-ftp.lip6.fr/pub/math/sagemath/src/sage-${SAGE_VERSION}.tar \
- && tar xvf /app/sage-${SAGE_VERSION}.tar \
- && cd sage-5.12 && make \
- && rm /app/sage-${SAGE_VERSION}.tar
+ && curl -Lso /app/sage-${SAGE_VERSION}.tar.gz http://www-ftp.lip6.fr/pub/math/sagemath/src/sage-${SAGE_VERSION}.tar.gz \
+ && tar xvf /app/sage-${SAGE_VERSION}.tar.gz \
+ && ls && cd sage-${SAGE_VERSION} && make \
+ && rm /app/sage-${SAGE_VERSION}.tar.gz
 
 #TODO find wherre file are located
 #VOLUME ["/data"]
