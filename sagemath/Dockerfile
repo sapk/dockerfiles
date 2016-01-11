@@ -11,7 +11,7 @@ ENV SAGE_VERSION 6.10
 RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /etc/apk/repositories \
  && apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    ca-certificates sudo curl \
+    ca-certificates sudo curl bash \
     tar m4 bzip2 make patch perl-extutils-makemaker@testing python git \
     gcc g++ gfortran libgfortran \
     openssl-dev readline-dev \
