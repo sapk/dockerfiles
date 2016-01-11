@@ -2,7 +2,8 @@
 FROM alpine:latest
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
-ENV RSYNCSOURCE="rsync://rsync.archive.ubuntu.com/ubuntu" BASEDIR="/var/www/ubuntuarchive/"
+ENV SYNCMODE="archive" RSYNCSOURCE="rsync://rsync.archive.ubuntu.com/ubuntu" BASEDIR="/var/www/ubuntuarchive/"
+# Could use in realease mode SYNCMODE="releases" with RSYNCSOURCE="rsync://rsync.releases.ubuntu.com/releases"
 
 COPY start.sh /
 
@@ -15,6 +16,7 @@ RUN apk -U --no-progress upgrade \
  && rm /var/cache/apk/*
  
 USER ubuntu
+VOLUME ${BASEDIR} 
 
 EXPOSE 8080
 ENTRYPOINT ["/start.sh"]
