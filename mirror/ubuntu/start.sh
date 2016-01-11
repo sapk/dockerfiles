@@ -1,14 +1,6 @@
 #!/bin/bash
 #Based on https://wiki.ubuntu.com/Mirrors/Scripts for archive
 
-# Find a source mirror near you which supports rsync on
-# https://launchpad.net/ubuntu/+archivemirrors
-# rsync://<iso-country-code>.rsync.archive.ubuntu.com/ubuntu should always work
-RSYNCSOURCE=${RSYNCSOURCE:-"rsync://rsync.archive.ubuntu.com/ubuntu"}
-  
-# Define where you want the mirror-data to be on your mirror
-BASEDIR=${BASEDIR:-"/var/www/ubuntuarchive/"}
-  
 fatal() {
   echo "$1"
   exit 1
