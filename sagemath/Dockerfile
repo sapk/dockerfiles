@@ -19,6 +19,7 @@ RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" | tee -a /et
     fonts-extra@testing ttf-dejavu \
     imagemagick \
  && addgroup -S sagemath && adduser -S -H -h /app/sage-${SAGE_VERSION} -G sagemath sagemath \
+ && mkdir /app && chown sagemath:sagemath /app \
  && rm /var/cache/apk/*
 #dejavu-sans-fonts dejavu-serif-fonts dejavu-sans-mono-fonts vlgothic-fonts
 
@@ -26,8 +27,7 @@ USER sagemath
 #TODO
 # - add cheksum control
 # - move to a folder more like /app/sage
-RUN mkdir /app \
- && curl -Lso /app/sage-${SAGE_VERSION}.tar.gz http://www-ftp.lip6.fr/pub/math/sagemath/src/sage-${SAGE_VERSION}.tar.gz \
+RUN curl -Lso /app/sage-${SAGE_VERSION}.tar.gz http://www-ftp.lip6.fr/pub/math/sagemath/src/sage-${SAGE_VERSION}.tar.gz \
  && tar xvf /app/sage-${SAGE_VERSION}.tar.gz \
  && ls && cd sage-${SAGE_VERSION} && make \
  && rm /app/sage-${SAGE_VERSION}.tar.gz
