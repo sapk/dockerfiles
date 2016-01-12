@@ -8,7 +8,7 @@ ENV GOPATH="/go" CADDY_TAG="v0.8.1"
 
 RUN    apk -U --no-progress upgrade \
     && apk -U --force --no-progress add \
-          build-tools go git \
+          build-tools go git ca-certificates \
     && mkdir $GOPATH /srv \
     && go get -tags=$CADDY_TAG github.com/mholt/caddy \
     && mv $GOPATH/bin/caddy /bin \
