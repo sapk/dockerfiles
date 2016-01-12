@@ -33,7 +33,7 @@ sync_archive() {
   sync_archive
 }
 
-darkhttpd ${BASEDIR} --port 8080 --chroot & 
+darkhttpd ${BASEDIR} --port 8080 & 
 
 sync_$SYNCMODE
 
