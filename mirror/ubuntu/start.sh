@@ -5,7 +5,11 @@ fatal() {
   echo "$1"
   exit 1
 }
- 
+
+warn() {
+  echo "$1"
+}
+
 sync_releases() {
   rsync --verbose --recursive --times --links --hard-links \
   --stats --delete-after \
@@ -28,10 +32,16 @@ sync_archive() {
     ${RSYNCSOURCE} ${BASEDIR} || fatal "Second stage of sync failed."
   
   date -u > ${BASEDIR}/project/trace/$(hostname -f)
-  
+  du -h -s > ${BASEDIR}/.statistics
+
   sleep 3h
   sync_archive
 }
+
+if [ ! -d ${BASEDIR} ]; then
+  warn "${BASEDIR} does not exist yet, trying to create it..."
+  mkdir -p ${BASEDIR} || fatal "Creation of ${BASEDIR} failed."
+fi
 
 darkhttpd ${BASEDIR} --port 8080 & 
 
