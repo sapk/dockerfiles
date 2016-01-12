@@ -32,7 +32,8 @@ sync_archive() {
     ${RSYNCSOURCE} ${BASEDIR} || fatal "Second stage of sync failed."
   
   date -u > ${BASEDIR}/project/trace/$(hostname -f)
-  
+  du -h -s > ${BASEDIR}/.statistics
+
   sleep 3h
   sync_archive
 }
