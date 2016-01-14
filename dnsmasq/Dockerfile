@@ -9,4 +9,7 @@ RUN apk -U --no-progress upgrade \
  && chmod +x /start.sh \
  && rm /var/cache/apk/*
  
- 
+EXPOSE 53
+ENTRYPOINT ["dnsmasq"]
+#http://www.thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html Maybe use --conf-dir= to set all params
+CMD ["-h", "-k", "-q", "--local-ttl=86400", "--auth-server=dns.sapk.fr", "--auth-zone=sapk.fr","--no-resolv", "-A=/www.sapk.fr/37.187.4.165" ]
