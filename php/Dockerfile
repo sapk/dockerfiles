@@ -4,7 +4,7 @@ MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 RUN apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    php-fpm php-zip php-gd php-mbstring \
+    php-fpm php-zip php-gd \
  && rm /var/cache/apk/*
 
 VOLUME /var/www 
