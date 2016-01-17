@@ -1,4 +1,5 @@
 #A simple client for letsencrypt  certificate generation
+# docker run -ti --rm -v /etc/nginx/certs sapk/letsencrypt domain.com
 FROM google/golang
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
