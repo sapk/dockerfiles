@@ -10,9 +10,9 @@ RUN apk -U --no-progress upgrade \
     php-fpm php-zip php-gd shadow \
  && addgroup -S www-data && adduser -S -H -h ${BASEDIR} -G www-data www-data \
  && mkdir ${BASEDIR} && chown www-data:www-data ${BASEDIR} \
- && sed s/user\ =\ nobody/user\ =\ www-data/g /etc/php/php-fpm.conf
- && sed s/group\ =\ nobody/group\ =\ www-data/g /etc/php/php-fpm.conf
- && sed s/listen\ =\ 127.0.0.1:9000/listen\ =\ 0.0.0.0:9000/g /etc/php/php-fpm.conf   
+ && sed s/user\ =\ nobody/user\ =\ www-data/g /etc/php/php-fpm.conf \
+ && sed s/group\ =\ nobody/group\ =\ www-data/g /etc/php/php-fpm.conf \
+ && sed s/listen\ =\ 127.0.0.1:9000/listen\ =\ 0.0.0.0:9000/g /etc/php/php-fpm.conf \
  && rm /var/cache/apk/*
 
 VOLUME ${BASEDIR} 
