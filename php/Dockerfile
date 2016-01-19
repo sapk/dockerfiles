@@ -7,7 +7,7 @@ ENV BASEDIR="/var/www",UID="33",GID="33"
 
 RUN apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    php-fpm php-zip php-gd shadow \
+    ca-certificates php-fpm php-zip php-gd shadow \
  && addgroup -S www-data && adduser -S -H -h ${BASEDIR} -G www-data www-data \
  && mkdir ${BASEDIR} && chown www-data:www-data ${BASEDIR} \
  && sed s/user\ =\ nobody/user\ =\ www-data/g /etc/php/php-fpm.conf \
