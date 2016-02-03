@@ -1,4 +1,4 @@
-FROM node:0.12-slim
+FROM node:0.12
 MAINTAINER Antoine GIRARD <sapk@sapk.fr>
 
 RUN groupadd ghost && useradd --no-create-home --home-dir /ghost -g ghost ghost
