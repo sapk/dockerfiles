@@ -8,4 +8,4 @@ WORKDIR /ghost
 VOLUME /ghost
 
 EXPOSE 2368
-ENTRYPOINT usermod -u $UID ghost && npm start --production
+ENTRYPOINT usermod -u $UID ghost && npm install --production && npm start --production
