@@ -1,4 +1,4 @@
-FROM node:0.12-slim
+FROM node:0.10-slim
 MAINTAINER Antoine GIRARD <sapk@sapk.fr>
 
 RUN groupadd ghost && useradd --no-create-home --home-dir /ghost -g ghost ghost
@@ -8,4 +8,4 @@ WORKDIR /ghost
 VOLUME /ghost
 
 EXPOSE 2368
-ENTRYPOINT usermod -u $UID ghost && npm start --production
+ENTRYPOINT usermod -u $UID ghost && npm install --production && npm start --production
