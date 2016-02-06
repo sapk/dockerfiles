@@ -4,7 +4,7 @@ MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 ENV SDK="android-sdk_r24.4.1-linux.tgz"
 ENV PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/share/android-sdk-linux/tools"
 
-RUN apt-get install -y default-jdk
+RUN apt-get update && apt-get upgrade && apt-get install -y default-jdk
 
 RUN npm install -g cordova gulp
 
