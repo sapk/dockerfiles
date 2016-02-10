@@ -25,7 +25,7 @@ RUN apt-get purge -y --auto-remove $buildDeps \
  && npm cache clean
  
 VOLUME /workspace
-EXPOSE 3131 
+EXPOSE 8181 
 ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "-l", "0.0.0.0"]
 
 #CMD["--auth","username:password"]
