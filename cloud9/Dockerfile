@@ -9,17 +9,11 @@ RUN buildDeps='make build-essential g++ gcc python2.7' && softDeps="git" \
  && apt-get update && apt-get upgrade -y \
  && apt-get install -y $buildDeps $softDeps --no-install-recommends \
  && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
- && rm -rf /var/lib/apt/lists/*
-
-
-
-RUN npm install -g forever && npm cache clean
-
-RUN git clone https://github.com/c9/core.git /cloud9 && cd /cloud9 \
- && scripts/install-sdk.sh
- 
-# Clean cache 
-RUN apt-get purge -y --auto-remove $buildDeps \
+ && rm -rf /var/lib/apt/lists/* \
+ && npm install -g forever && npm cache clean \
+ && git clone https://github.com/c9/core.git /cloud9 && cd /cloud9 \
+ && scripts/install-sdk.sh \
+ && apt-get purge -y --auto-remove $buildDeps \
  && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
  && npm cache clean
