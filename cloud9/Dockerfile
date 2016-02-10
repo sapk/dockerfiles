@@ -6,7 +6,7 @@ FROM node:slim
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 RUN buildDeps='git' && softDeps="" \
- && apt-get update && apt-get upgrade \
+ && apt-get update && apt-get upgrade -y \
  && apt-get install -y $buildDeps $softDeps --no-install-recommends \
  && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
  && rm -rf /var/lib/apt/lists/*
