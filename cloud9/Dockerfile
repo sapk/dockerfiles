@@ -16,6 +16,7 @@ RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
  && npm cache clean
  
 VOLUME /workspace
-EXPOSE 3131 # copy from kennethkl/cloud9 ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "-l", "0.0.0.0"]
+EXPOSE 3131 
+ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "-l", "0.0.0.0"]
 
 #CMD["--auth","username:password"]
