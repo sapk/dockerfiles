@@ -5,6 +5,14 @@
 FROM node:slim
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
+RUN buildDeps='git' && softDeps="" \
+ && apt-get update && apt-get upgrade \
+ && apt-get install -y $buildDeps $softDeps --no-install-recommends \
+ && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
+ && rm -rf /var/lib/apt/lists/*
+
+
+
 RUN npm install -g forever && npm cache clean
 
 RUN git clone https://github.com/c9/core.git /cloud9 && cd /cloud9 \
@@ -14,6 +22,7 @@ RUN git clone https://github.com/c9/core.git /cloud9 && cd /cloud9 \
 RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
  && npm cache clean
+#	&& apt-get purge -y --auto-remove $buildDeps \
  
 VOLUME /workspace
 EXPOSE 3131 
