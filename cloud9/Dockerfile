@@ -5,7 +5,7 @@
 FROM node:slim
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
-RUN buildDeps='make gcc python2' && softDeps="git" \
+RUN buildDeps='make gcc python2.7' && softDeps="git" \
  && apt-get update && apt-get upgrade -y \
  && apt-get install -y $buildDeps $softDeps --no-install-recommends \
  && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
