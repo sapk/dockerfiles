@@ -1,6 +1,6 @@
 #Cloud9 instance
 
-Docker hub: [https://registry.hub.docker.com/u/sapk/cloud9/][1]
+Docker hub: https://registry.hub.docker.com/u/sapk/cloud9/
 ##Usage
 
     docker run -d -v $(pwd):/workspace -p 3131:3131 sapk/cloud9
