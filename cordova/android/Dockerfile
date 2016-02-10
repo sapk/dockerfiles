@@ -14,7 +14,7 @@ RUN cd /usr/share \
     && android list sdk --all \
     && echo y | android update sdk -u -a -t 1,3,4,26,27
 
-VOLUME /workdir
-WORKDIR /workdir
+VOLUME /workspace
+WORKDIR /workspace
 
 ENTRYPOINT ["/bin/bash"]
