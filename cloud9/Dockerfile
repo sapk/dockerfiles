@@ -5,7 +5,7 @@
 FROM node:slim
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
-RUN buildDeps='git' && softDeps="" \
+RUN buildDeps='make gcc python2' && softDeps="git" \
  && apt-get update && apt-get upgrade -y \
  && apt-get install -y $buildDeps $softDeps --no-install-recommends \
  && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
@@ -19,10 +19,10 @@ RUN git clone https://github.com/c9/core.git /cloud9 && cd /cloud9 \
  && scripts/install-sdk.sh
  
 # Clean cache 
-RUN apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
+RUN apt-get purge -y --auto-remove $buildDeps \
+ && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
  && npm cache clean
-#	&& apt-get purge -y --auto-remove $buildDeps \
  
 VOLUME /workspace
 EXPOSE 3131 
