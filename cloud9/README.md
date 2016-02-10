@@ -3,8 +3,10 @@
 Docker hub: https://registry.hub.docker.com/u/sapk/cloud9/
 ##Usage
 
-    docker run -d -v $(pwd):/workspace -p 3131:3131 sapk/cloud9
+    docker run -d -v $(pwd):/workspace -p 8181:8181 sapk/cloud9
 
 ##Start with auth
 
-    docker run -d -v $(pwd):/workspace -p 3131:3131 sapk/cloud9 --auth username:password
+    docker run -d -v $(pwd):/workspace -p 8181:8181 sapk/cloud9 --auth username:password
+
+You can also use any starting option describe in : https://github.com/c9/core
