@@ -1,9 +1,9 @@
 # A docker file to run php-fpm server behind nginx or other frontend
-FROM alpine:latest
+FROM hypriot/rpi-alpine-scratch
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 #UID et GID can be set at run time to change in relation with the host 
-ENV BASEDIR="/var/www",UID="33",GID="33"
+ENV BASEDIR="/var/www" UID="33" GID="33"
 
 RUN  echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
  && echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
