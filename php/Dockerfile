@@ -7,7 +7,7 @@ ENV BASEDIR="/var/www",UID="33",GID="33"
 
 RUN apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    ca-certificates php-fpm php-zip php-gd shadow \
+    ca-certificates php-fpm php-cli php-zip php-gd shadow \
  && addgroup -S www-data && adduser -S -H -h ${BASEDIR} -G www-data www-data \
  && mkdir ${BASEDIR} && chown www-data:www-data ${BASEDIR} \
  && sed --in-place s/user\ =\ nobody/user\ =\ www-data/g /etc/php/php-fpm.conf \
@@ -18,5 +18,5 @@ RUN apk -U --no-progress upgrade \
 VOLUME ${BASEDIR} 
 WORKDIR ${BASEDIR}
 EXPOSE 9000
-ENTRYPOINT ["/usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-fpm"]
-CMD ["-F -e - i"]
+ENTRYPOINT ["/usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && "]
+CMD ["/usr/bin/php-fpm","-F","-e","- i"]
