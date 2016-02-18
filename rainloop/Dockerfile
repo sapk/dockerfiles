@@ -9,6 +9,9 @@ RUN apk -U --no-progress upgrade \
     unzip wget \
  && wget -O /tmp/rainloop-community-latest.zip "$DOWN_URL" \
  && unzip /tmp/rainloop-community-latest.zip -d /var/www \
+ && cd /var/www/ && chown -R www-data:www-data .\
+ && find . -type d -exec chmod 755 {} \; \
+ && find . -type f -exec chmod 644 {} \; \
  && apk --force --no-progress del unzip wget \
  && rm /var/cache/apk/* /tmp/rainloop-community-latest.zip
 
