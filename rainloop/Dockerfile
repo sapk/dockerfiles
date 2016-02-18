@@ -4,10 +4,10 @@ MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 ENV DOWN_URL="http://repository.rainloop.net/v2/webmail/rainloop-community-latest.zip"
 
-RUN apk -U --no-progress upgrade \
+RUN apk -U --force --no-progress upgrade \
  && apk -U --force --no-progress add \
     unzip wget \
-    php-iconv php-curl php-json php-xml php-dom php-openssl pcre \
+    php-iconv php-curl php-json php-dom php-openssl pcre \
  && wget -O /tmp/rainloop-community-latest.zip "$DOWN_URL" \
  && unzip /tmp/rainloop-community-latest.zip -d /var/www \
  && cd /var/www/ && chown -R www-data:www-data .\
