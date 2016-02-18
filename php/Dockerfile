@@ -21,5 +21,6 @@ RUN  echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositorie
 VOLUME ${BASEDIR} 
 WORKDIR ${BASEDIR}
 EXPOSE 9000
-ENTRYPOINT ["/usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-fpm "]
-CMD [" -F -e -i"]
+
+ENTRYPOINT /usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-fpm 
+CMD  -F -e -i

@@ -1,5 +1,5 @@
 # A docker file to run rainloop
-FROM sapk/php-fpm
+FROM sapk/php-fpm:rpi
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 ENV WORKDIR="/var/rainloop" DOWN_URL="http://repository.rainloop.net/v2/webmail/rainloop-community-latest.zip"
