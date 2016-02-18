@@ -6,7 +6,7 @@
 FROM alpine:latest
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
-ENV COUCHDB_VERSION 1.6.1
+ENV COUCHDB_VERSION="1.6.1" SHELL="/bin/bash"
 
 # CouchDB installation
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
@@ -18,7 +18,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
     make gcc g++ perl python autoconf m4 \
     erlang erlang-mnesia erlang-public-key erlang-crypto erlang-ssl erlang-sasl erlang-asn1 erlang-inets erlang-os-mon erlang-xmerl erlang-eldap erlang-erts \
     icu-dev curl-dev \
- && export SHELL=/bin/bash \
  && wget http://ftp.mozilla.org/pub/mozilla.org/js/mozjs-24.2.0.tar.bz2 \
  && mkdir -p /usr/src/mozjs && tar -xjf mozjs-24.2.0.tar.bz2 -C /usr/src/mozjs --strip-components=1 && rm mozjs-24.2.0.tar.bz2 
 
@@ -28,7 +27,7 @@ RUN curl -sSL http://apache.openmirror.de/couchdb/source/$COUCHDB_VERSION/apache
  && curl -sSL https://www.apache.org/dist/couchdb/source/$COUCHDB_VERSION/apache-couchdb-$COUCHDB_VERSION.tar.gz.asc -o couchdb.tar.gz.asc \
  && mkdir -p /usr/src/couchdb && tar -xzf couchdb.tar.gz -C /usr/src/couchdb --strip-components=1 && rm couchdb.tar.gz couchdb.tar.gz.asc 
 
-RUN cd /usr/src/couchdb && ./configure --with-js-lib=/usr/lib --with-js-include=/usr/local/include/mozjs && make --quiet && make install && cd \
+RUN cd /usr/src/couchdb && ./configure --with-js-lib=/usr/local/lib --with-js-include=/usr/local/include/mozjs && make --quiet && make install && cd \
  && apk --no-progress --force del sudo curl tar make gcc g++ icu-dev curl-dev	gnupg \
  && rm /var/cache/apk/* && rm -rf /usr/src/couchdb /usr/src/mozjs
  
