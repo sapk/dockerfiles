@@ -9,12 +9,16 @@ RUN apk -U --force --no-progress upgrade \
     unzip wget \
     php-iconv php-curl php-json php-dom php-openssl pcre \
  && wget -O /tmp/rainloop-community-latest.zip "$DOWN_URL" \
- && unzip /tmp/rainloop-community-latest.zip -d /var/www \
- && cd /var/www/ && chown -R www-data:www-data .\
+ && unzip /tmp/rainloop-community-latest.zip -d ${BASEDIR} \
+ && cd ${BASEDIR} && chown -R www-data:www-data .\
  && find . -type d -exec chmod 755 {} \; \
  && find . -type f -exec chmod 644 {} \; \
  && apk --force --no-progress del unzip wget \
  && rm /var/cache/apk/* /tmp/rainloop-community-latest.zip
 
-#CMD ["/usr/bin/php-fpm","-F","-e","-i"]
-CMD ["/usr/bin/php-cli", "-S", "0.0.0.0:80", "-t", "/var/www/"]
+EXPOSE 80
+#ENTRYPOINT ["/usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-fpm "]
+#CMD [" -F -e -i"]
+ENTRYPOINT ["/usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-cli "]
+CMD [" -S 0.0.0.0:80 -t /var/www/"]
+
