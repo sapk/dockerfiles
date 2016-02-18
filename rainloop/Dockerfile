@@ -7,6 +7,7 @@ ENV DOWN_URL="http://repository.rainloop.net/v2/webmail/rainloop-community-lates
 RUN apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
     unzip wget \
+    php-iconv php-curl php-json php-xml php-dom php-openssl pcre \
  && wget -O /tmp/rainloop-community-latest.zip "$DOWN_URL" \
  && unzip /tmp/rainloop-community-latest.zip -d /var/www \
  && cd /var/www/ && chown -R www-data:www-data .\
