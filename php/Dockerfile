@@ -10,7 +10,7 @@ RUN  echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositorie
  && echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
  && apk -U --no-progress upgrade \
  && apk -U --force --no-progress add \
-    ca-certificates php-fpm php-cli php-zip php-gd shadow@testing \
+    ca-certificates php-fpm php-cli php-zip php-gd shadow \
  && addgroup -S www-data && adduser -S -H -h ${BASEDIR} -G www-data www-data \
  && mkdir ${BASEDIR} && chown www-data:www-data ${BASEDIR} \
  && sed --in-place s/user\ =\ nobody/user\ =\ www-data/g /etc/php/php-fpm.conf \
