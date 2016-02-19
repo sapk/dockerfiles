@@ -1,5 +1,5 @@
 # A docker file to run php-fpm server behind nginx or other frontend with owncloud pre-installed
-FROM sapk/php-fpm
+FROM sapk/php-fpm:rpi
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 ENV WORKDIR="/var/owncloud" OC_VERSION="8.2.2"
