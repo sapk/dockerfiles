@@ -26,5 +26,10 @@ RUN apk -U --force --no-progress upgrade \
  && rm -Rf /tmp/* /var/cache/apk/*
 #Coudl add php-pdo_pgsql php-pdo_mysql \
 
+#EXPOSE 80
 WORKDIR $WORKDIR
 VOLUME $WORKDIR/data $WORKDIR/config
+
+#ENTRYPOINT /usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && chown -R www-data:www-data . && /usr/bin/php -S 0.0.$
+#CMD []
+
