@@ -23,7 +23,7 @@ RUN apk -U --force --no-progress upgrade \
  && sed --in-place s/max_execution_time\ =\ 30/max_execution_time\ =\ 3600/g /etc/php/php.ini \
  && sed --in-place s/output_buffering\ =\ 4096/output_buffering\ =\ 0/g /etc/php/php.ini \
  && sed --in-place s/memory_limit\ =\ 128M/memory_limit\ =\ 1G/g /etc/php/php.ini \
- && rm -Rf /tmp/*
+ && rm -Rf /tmp/* /var/cache/apk/*
 
 #Coudl add php-pdo_pgsql php-pdo_mysql \
 
