@@ -24,12 +24,7 @@ RUN apk -U --force --no-progress upgrade \
  && sed --in-place s/output_buffering\ =\ 4096/output_buffering\ =\ 0/g /etc/php/php.ini \
  && sed --in-place s/memory_limit\ =\ 128M/memory_limit\ =\ 1G/g /etc/php/php.ini \
  && rm -Rf /tmp/* /var/cache/apk/*
-
 #Coudl add php-pdo_pgsql php-pdo_mysql \
 
-EXPOSE 80
 WORKDIR $WORKDIR
 VOLUME $WORKDIR/data $WORKDIR/config
-
-ENTRYPOINT /usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && chown -R www-data:www-data . && /usr/bin/php -S 0.0.0.0:80 -t $WORKDIR
-CMD []
