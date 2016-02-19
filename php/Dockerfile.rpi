@@ -22,5 +22,5 @@ VOLUME ${BASEDIR}
 WORKDIR ${BASEDIR}
 EXPOSE 9000
 
-ENTRYPOINT /usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-fpm 
-CMD  -F -e -i
+ENTRYPOINT /usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-fpm -F -e -i
+CMD []
