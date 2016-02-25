@@ -19,4 +19,4 @@ EXPOSE 80 443 2015
 VOLUME     [ "/srv" ]
 WORKDIR    [ "/srv" ]
 ENTRYPOINT [ "/bin/caddy" ]
-CMD        [ "-conf='/srv/Caddyfile" ]
+CMD        [ "-conf=/srv/Caddyfile" ]
