@@ -4,7 +4,7 @@
 FROM alpine:latest
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
-ENV GOPATH="/go" CADDY_TAG="v0.8.1"
+ENV GOPATH="/go" CADDY_TAG="v0.8.2"
 
 RUN    apk -U --no-progress upgrade \
     && apk -U --force --no-progress add \
