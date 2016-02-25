@@ -17,6 +17,5 @@ RUN    apk -U --no-progress upgrade \
 
 EXPOSE 80 443 2015
 VOLUME     [ "/srv" ]
-WORKDIR    [ "/srv" ]
 ENTRYPOINT [ "/bin/caddy" ]
 CMD        [ "-conf=/srv/Caddyfile" ]
