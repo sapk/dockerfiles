@@ -9,10 +9,9 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
  && apk --no-cache --no-progress add openssh shadow \
  && useradd --shell /bin/false --create-home --user-group tunnel \
  && printf "\nAllowUsers tunnel \nAllowTcpForwarding yes \nX11Forwarding no \n" >> /etc/ssh/sshd_config \
- && echo "tunnel:aqw123" | chpasswd
-# && printf "\nChallengeResponseAuthentication no \nPasswordAuthentication no \n" >> /etc/ssh/sshd_config
+ && printf "\nChallengeResponseAuthentication no \nPasswordAuthentication no \n" >> /etc/ssh/sshd_config
 
-#VOLUME ["/home/tunnel/.ssh/"] 
+VOLUME ["/home/tunnel/.ssh/"] 
 #Mount add authorized_keys in it.
 
 EXPOSE 22
