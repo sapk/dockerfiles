@@ -3,9 +3,10 @@ MAINTAINER Antoine GIRARD <sapk@sapk.fr>
 
 RUN groupadd ghost && useradd --no-create-home --home-dir /ghost -g ghost ghost
 
+USER ghost
 WORKDIR /ghost
-#TODO analyze to be more precise
-VOLUME /ghost
+
+VOLUME /ghost/content/data/
 
 EXPOSE 2368
-ENTRYPOINT usermod -u $UID ghost && npm install --production && npm start --production
+ENTRYPOINT npm install --production && npm start --production
