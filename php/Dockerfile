@@ -3,7 +3,7 @@ FROM alpine:edge
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 #UID et GID can be set at run time to change in relation with the host 
-ENV BASEDIR="/var/www",UID="33",GID="33"
+ENV BASEDIR="/var/www" UID="33" GID="33"
 
 #Install php and deps (+ add testing repo)
 RUN  echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
