@@ -22,5 +22,6 @@ VOLUME /var/www
 WORKDIR /var/www
 EXPOSE 9000
 
-ENTRYPOINT /usr/sbin/groupmod --non-unique -g $GID www-data && /usr/sbin/usermod -o -u $UID -G $GID www-data && /usr/bin/php-fpm -F -e -i
+ENTRYPOINT /usr/sbin/groupmod --non-unique -g $GID www-data && /usr/sbin/usermod -o -u $UID -G $GID www-data && /usr/bin/php-fpm -F
+#-e -i
 CMD []
