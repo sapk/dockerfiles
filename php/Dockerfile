@@ -16,7 +16,7 @@ RUN addgroup -S www-data && adduser -S -H -h ${BASEDIR} -G www-data www-data \
  && mkdir ${BASEDIR} && chown www-data:www-data ${BASEDIR} \
  && sed --in-place s/user\ =\ nobody/user\ =\ www-data/g /etc/php/php-fpm.conf \
  && sed --in-place s/group\ =\ nobody/group\ =\ www-data/g /etc/php/php-fpm.conf \
- && sed --in-place s/listen\ =\ 127.0.0.1:9000/listen\ =\ 0.0.0.0:9000/g /etc/php/php-fpm.conf \
+ && sed --in-place s/listen\ =\ 127.0.0.1:9000/listen\ =\ 0.0.0.0:9000/g /etc/php/php-fpm.conf
 
 VOLUME /var/www
 WORKDIR /var/www
