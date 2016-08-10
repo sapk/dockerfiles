@@ -1,5 +1,5 @@
 # A docker file to run php-fpm server behind nginx or other frontend
-FROM alpine:edge 
+FROM alpine:latest 
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
 #UID et GID can be set at run time to change in relation with the host 
