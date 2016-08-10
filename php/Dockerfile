@@ -18,8 +18,8 @@ RUN addgroup -S www-data && adduser -S -H -h ${BASEDIR} -G www-data www-data \
  && sed --in-place s/group\ =\ nobody/group\ =\ www-data/g /etc/php/php-fpm.conf \
  && sed --in-place s/listen\ =\ 127.0.0.1:9000/listen\ =\ 0.0.0.0:9000/g /etc/php/php-fpm.conf \
 
-VOLUME ${BASEDIR} 
-WORKDIR ${BASEDIR}
+VOLUME /var/www
+WORKDIR /var/www
 EXPOSE 9000
 
 ENTRYPOINT /usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-fpm -F -e -i
