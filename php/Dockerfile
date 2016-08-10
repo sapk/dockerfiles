@@ -7,9 +7,9 @@ ENV BASEDIR="/var/www",UID="33",GID="33"
 
 #Install php and deps (+ add testing repo)
 RUN  echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
- && apk -U  --no-cache --no-progress upgrade \
- && apk -U  --no-cache --force --no-progress add \
-    ca-certificates php-fpm php-cli php-zip php-gd shadow \
+ && apk --no-progress upgrade --no-cache\
+ && apk --no-progress add --no-cache ca-certificates \
+    php-fpm php-cli php-zip php-gd shadow 
     
 #Configure
 RUN addgroup -S www-data && adduser -S -H -h ${BASEDIR} -G www-data www-data \
