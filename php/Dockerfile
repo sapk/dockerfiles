@@ -12,7 +12,7 @@ RUN  echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposi
  && apk --no-progress add --no-cache ca-certificates \
     php-fpm php-cli php-zip php-gd shadow 
 #Configure
-RUN addgroup -S www-data && adduser -S -H -h ${BASEDIR} -G www-data www-data \
+RUN addgroup -S www-data && adduser -S -H -h ${BASEDIR} -g www-data www-data \
  && mkdir ${BASEDIR} && chown www-data:www-data ${BASEDIR} \
  && sed --in-place s/user\ =\ nobody/user\ =\ www-data/g /etc/php/php-fpm.conf \
  && sed --in-place s/group\ =\ nobody/group\ =\ www-data/g /etc/php/php-fpm.conf \
@@ -22,5 +22,5 @@ VOLUME /var/www
 WORKDIR /var/www
 EXPOSE 9000
 
-ENTRYPOINT /usr/sbin/groupmod -g $GID www-data && /usr/sbin/usermod -u $UID -g $GID www-data && /usr/bin/php-fpm -F -e -i
+ENTRYPOINT /usr/sbin/groupmod --non-unique -g $GID www-data && /usr/sbin/usermod -u $UID -G $GID www-data && /usr/bin/php-fpm -F -e -i
 CMD []
