@@ -18,6 +18,6 @@ RUN buildDeps='make build-essential g++ gcc python2.7' && softDeps="tmux git" \
  
 VOLUME /workspace
 EXPOSE 8181 
-ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "-l", "0.0.0.0"]
+ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "--listen", "0.0.0.0"]
 
 #CMD["--auth","username:password"]
