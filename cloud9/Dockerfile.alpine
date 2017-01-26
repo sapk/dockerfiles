@@ -1,0 +1,30 @@
+# Cloud9 server
+# A lot inspired by https://hub.docker.com/r/gai00/cloud9/~/dockerfile/
+#                   https://hub.docker.com/r/kdelfour/cloud9-docker/~/dockerfile/
+
+FROM node:alpine
+MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
+
+ 
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+ && echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+ && apk -U --no-cache --no-progress upgrade \
+ && apk -U --no-cache --force --no-progress add bash tmux git make gcc g++ python sqlite wget openssl ca-certificates \
+ && npm install -g forever && npm cache clean \
+ && git clone https://github.com/c9/core.git /root/.c9 && cd /root/.c9 \
+ && mkdir -p /root/.c9/node/bin /root/.c9/bin /root/.c9/node_modules \
+ && ln -sf "`which tmux`" /root/.c9/bin/tmux \
+ && ln -s "`which node`" /root/.c9/node/bin/node \
+ && ln -s "`which npm`" /root/.c9/node/bin/npm \
+ && npm i pty.js sqlite3 sequelize@2.0.0-beta.0 https://github.com/c9/nak/tarball/c9 \
+ && npm i && echo 1 > /root/.c9/installed \
+ && ./scripts/install-sdk.sh \
+ && npm cache clean  && rm -rf /var/cache/apk/* /tmp/* /var/tmp/* \
+
+ 
+VOLUME /workspace
+EXPOSE 8181 
+ENTRYPOINT ["forever", "/root/.c9/server.js", "-w", "/workspace", "--listen", "0.0.0.0"]
+
+#CMD["--auth","username:password"]
