@@ -10,4 +10,6 @@ RUN apk -U --no-progress upgrade && apk add -U --force --no-progress transmissio
 VOLUME ["/var/lib/transmission-daemon"]
 EXPOSE 9091 51413/tcp 51413/udp
 
+USER nobody
+
 ENTRYPOINT ["/usr/bin/transmission-daemon", "--logfile", "/dev/stdout"]
