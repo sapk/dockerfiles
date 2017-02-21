@@ -3,4 +3,4 @@ LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
 
 RUN pacman -S --noconfirm glusterfs
 
-CMD /bin/bash
+CMD /usr/bin/glusterd
