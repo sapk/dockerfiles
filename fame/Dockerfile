@@ -1,7 +1,11 @@
 FROM alpine
 MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 
-RUN apk add --no-cache --no-progress  ca-certificates mongodb python py-pip uwsgi git gcc \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+ && echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+ && apk -U --no-cache --no-progress upgrade \
+ && apk add --no-cache --no-progress  ca-certificates mongodb python py-pip uwsgi git gcc \
  && pip install virtualenv \
  && git clone https://github.com/certsocietegenerale/fame && cd fame \
  && (mongod &) && sleep 30s \
