@@ -4,6 +4,7 @@ MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 RUN apk add --no-cache --no-progress  ca-certificates mongodb python py-pip uwsgi git gcc \
  && pip install virtualenv \
  && git clone https://github.com/certsocietegenerale/fame && cd fame \
+ && (mongod &) && sleep 30s \
  && echo "1" | utils/run.sh utils/install.py \
  && apk del --purge git gcc
 
