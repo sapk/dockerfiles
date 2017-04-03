@@ -1,9 +1,11 @@
 FROM base/archlinux
 
 #Inspired from https://github.com/finalduty/docker-archlinux/blob/master/mkdocker-archlinux.sh
-ENV ROOTFS="/tmp/archroot" PKGIGNORE="cryptsetup device-mapper dhcpcd gcc-go iproute2 jfsutils linux lvm2 man-db man-pages mdadm netctl openresolv pciutils pcmciautils reiserfsprogs s-nail systemd-sysvcompat usbutils nano vi xfsprogs"
+ENV ROOTFS="/tmp/archroot" PKGS="filesystem bash coreutils file findutils gettext bzip2 glibc grep gzip inetutils iproute2 iputils less licenses pacman pciutils perl shadow sed sysfsutils tar texinfo which"
 
-RUN pacstrap -c -d -G -i $ROOTFS base haveged $PACMAN_EXTRA_PKGS --ignore $PKGIGNORE
+RUN mkdir -p $ROOTFS \
+ && pacman -Syu --noconfirm \
+ && pacstrap -c -d -G $ROOTFS $PKGS $PACMAN_EXTRA_PKGS
 
 FROM scratch 
 LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
