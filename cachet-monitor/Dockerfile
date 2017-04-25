@@ -9,4 +9,4 @@ RUN apk -U --no-cache --no-progress upgrade \
 && chmod +x /usr/bin/cachet-monitor \
 && rm -rf /var/cache/apk/*
 
-ENTRYPOINT /usr/bin/cachet-monitor
+ENTRYPOINT ["/usr/bin/cachet-monitor", "--config", "/etc/cachet-monitor.config.json"]
