@@ -1,6 +1,6 @@
 image: sapk/alpine-multi:edge
 manifests:
-  - image: multiarch/alpine:x86_64-edge
+  - image: alpine:edge
     platform:
       architecture: amd64
       os: linux
