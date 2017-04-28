@@ -1,6 +1,6 @@
 image: sapk/alpine-multi:3.5
 manifests:
-  - image: multiarch/alpine:x86_64-v3.5
+  - image: alpine:3.5
     platform:
       architecture: amd64
       os: linux
