@@ -1,0 +1,14 @@
+image: sapk/alpine-multi:3.5
+manifests:
+  - image: multiarch/alpine:x86_64-v3.5
+    platform:
+      architecture: amd64
+      os: linux
+  - image: multiarch/alpine:armhf-v3.5
+    platform:
+      architecture: arm
+      os: linux
+  - image: multiarch/alpine:aarch64-v3.5
+    platform:
+      architecture: arm64
+      os: linux
