@@ -1,6 +1,6 @@
 image: sapk/alpine-multi:latest
 manifests:
-  - image: multiarch/alpine:x86_64-latest-stable
+  - image: alpine:latest
     platform:
       architecture: amd64
       os: linux
