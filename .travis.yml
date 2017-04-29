@@ -17,4 +17,3 @@ after_success:
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-edge.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-3-5.yml
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then exit 0; fi
