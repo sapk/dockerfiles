@@ -1,9 +1,8 @@
 sudo: required
 services: docker
 language: go
-go:
-  - 1.8.x
-        
+install: true
+
 before_script:
   - go get -u -v github.com/estesp/manifest-tool
   
