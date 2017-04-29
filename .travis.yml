@@ -13,6 +13,8 @@ script:
   - echo "ok"
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi.yml; fi
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-edge.yml; fi
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-3-5.yml; fi
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
+  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi.yml
+  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-edge.yml
+  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-3-5.yml
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then exit 0; fi
