@@ -3,13 +3,8 @@ services: docker
 language: go
 go:
   - 1.8.x
-  
-env:
-    global:
-        - GOPATH=/go
         
 before_script:
-  - sudo apt-get -y install golang-1.8-go
   - go get -u -v github.com/estesp/manifest-tool
   
 script:
