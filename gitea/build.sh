@@ -12,4 +12,4 @@ git checkout multi-stage-docker
 sed -i "s;gitea/;sapk/;g" docker/manifest/gitea*
 cd ..
 
-docker run -v `pwd`/bundles:/go/src/github.com/docker/docker/bundles --privileged -ti docker-dev:master bash -c "cd gitea; export PATH=$PATH:`pwd`/bundles/latest/dynbinary-daemon:`pwd`/bundles/latest/binary-client/; dockerd & make docker-multi-update-all;"
+docker run -v `pwd`/bundles:/go/src/github.com/docker/docker/bundles --privileged -ti docker-dev:master bash -c "cd gitea; export PATH=\$PATH:\$(pwd)/bundles/latest/dynbinary-daemon:\$(pwd)/bundles/latest/binary-client/; dockerd & make docker-multi-update-all;"
