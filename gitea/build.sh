@@ -9,5 +9,5 @@ git clone https://github.com/sapk-fork/gitea
 cd gitea
 git checkout multi-stage-docker
 #sed -i "s;gitea/;sapk/;g" docker/manifest/gitea*
-dockerd & 
+service docker restart
 make docker-multi-update-all
