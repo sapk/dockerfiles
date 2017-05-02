@@ -3,7 +3,7 @@
 cd /tmp
 #Build last docker version. Based on: http://blog.alexellis.io/mutli-stage-docker-builds/#howcanitryitout
 git clone https://github.com/docker/docker 
-(cd docker && make install)
+(cd docker && sudo make install)
 
 git clone https://github.com/sapk-fork/gitea
 cd gitea
