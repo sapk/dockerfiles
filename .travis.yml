@@ -3,6 +3,11 @@ services: docker
 language: go
 install: true
 
+#Update to last docker engine
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
+  
 before_script:
   - go get -u -v github.com/estesp/manifest-tool
   
