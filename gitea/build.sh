@@ -10,6 +10,6 @@ cd /tmp
 git clone https://github.com/sapk-fork/gitea
 cd gitea
 git checkout multi-stage-docker
-sed -i "s;gitea/;sapk/;g" docker/manifest/gitea*
+#sed -i "s;gitea/;sapk/;g" docker/manifest/gitea*
 
 DOCKER_PUSHIMAGE=sapk/gitea make docker-multi-update-all
