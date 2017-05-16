@@ -13,3 +13,8 @@ git checkout multi-stage-docker
 #sed -i "s;gitea/;sapk/;g" docker/manifest/gitea*
 
 DOCKER_PUSHIMAGE=sapk/gitea make docker-multi-update-all
+
+GITEA_VERSION=v1.1.1 DOCKER_PUSHIMAGE=sapk/gitea make docker-multi-update-all
+GITEA_VERSION=v1.1.0 DOCKER_PUSHIMAGE=sapk/gitea make docker-multi-update-all
+GITEA_VERSION=v1.0.2 DOCKER_PUSHIMAGE=sapk/gitea make docker-multi-update-all
+
