@@ -9,7 +9,7 @@ before_install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   
 before_script:
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
+  - if ! [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export DOCKER_USERNAME=""; export DOCKER_PASSWORD=""; fi
   - go get -u -v github.com/estesp/manifest-tool
   
 script:
@@ -17,6 +17,6 @@ script:
   - bash gitea/build.sh
 
 after_success:
-  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi.yml
-  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-edge.yml
-  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-3-5.yml
+  - $GOPATH/bin/manifest-tool --username $DOCKER_USERNAME --password $DOCKER_PASSWORD push from-spec alpine-multi/alpine-multi.yml
+  - $GOPATH/bin/manifest-tool --username $DOCKER_USERNAME --password $DOCKER_PASSWORD push from-spec alpine-multi/alpine-multi-edge.yml
+  - $GOPATH/bin/manifest-tool --username $DOCKER_USERNAME --password $DOCKER_PASSWORD push from-spec alpine-multi/alpine-multi-3-5.yml
