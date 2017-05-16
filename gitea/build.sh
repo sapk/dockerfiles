@@ -17,7 +17,7 @@ DOCKER_PUSHIMAGE=sapk/gitea make --always-make docker-multi-arm
 DOCKER_PUSHIMAGE=sapk/gitea make --always-make docker-multi-arm64
 DOCKER_MANIFEST=docker/manifest/gitea.yml DOCKER_PUSHIMAGE=sapk/gitea make --always-make docker-multi-update-manifest
 
-#GITEA_VERSION=v1.1.1 DOCKER_PUSHIMAGE=sapk/gitea make -B docker-multi-amd64 docker-multi-arm docker-multi-arm64
+DOCKER_PUSHIMAGE=sapk/gitea GITEA_VERSION=v1.1.1 make --always-make docker-multi-update-all
 #DOCKER_MANIFEST=docker/manifest/gitea-1-1-1.yml DOCKER_PUSHIMAGE=sapk/gitea make -B docker-multi-update-manifest
 
 #GITEA_VERSION=v1.1.0 DOCKER_PUSHIMAGE=sapk/gitea make docker-multi-update-all
