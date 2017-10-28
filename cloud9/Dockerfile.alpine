@@ -8,7 +8,7 @@ MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
  
 RUN apk -U --no-cache --no-progress upgrade \
  && apk -U --no-cache --force --no-progress add bash tmux git make gcc g++ python sqlite wget openssl ca-certificates \
- && npm install -g forever && npm cache clean \
+ && npm install -g forever && npm cache clean --force \
  && git clone https://github.com/c9/core.git /root/.c9 && cd /root/.c9 \
  && mkdir -p /root/.c9/node/bin /root/.c9/bin /root/.c9/node_modules \
  && ln -sf "`which tmux`" /root/.c9/bin/tmux \
