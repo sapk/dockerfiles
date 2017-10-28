@@ -1,5 +1,5 @@
 FROM node:slim
-MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
+LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
 
 ENV SDK="android-sdk_r24.4.1-linux.tgz"
 ENV PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/share/android-sdk-linux/tools:/usr/share/android-sdk-linux/platform-tools"
