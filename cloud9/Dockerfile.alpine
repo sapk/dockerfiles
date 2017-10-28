@@ -14,10 +14,10 @@ RUN apk -U --no-cache --no-progress upgrade \
  && ln -sf "`which tmux`" /root/.c9/bin/tmux \
  && ln -s "`which node`" /root/.c9/node/bin/node \
  && ln -s "`which npm`" /root/.c9/node/bin/npm \
- && npm i pty.js sqlite3 sequelize@2.0.0-beta.0 https://github.com/c9/nak/tarball/c9 \
+ && npm i pty.js sqlite3 https://github.com/c9/nak/tarball/c9 \
  && npm i && echo 1 > /root/.c9/installed \
  && ./scripts/install-sdk.sh \
- && npm cache clean  && rm -rf /var/cache/apk/* /tmp/* /var/tmp/* \
+ && npm cache clean --force && rm -rf /var/cache/apk/* /tmp/* /var/tmp/* \
 
  
 VOLUME /workspace
