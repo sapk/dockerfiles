@@ -14,7 +14,7 @@ RUN buildDeps='make build-essential g++ gcc python2.7' && softDeps="tmux git" \
  && apt-get purge -y --auto-remove $buildDeps \
  && apt-get autoremove -y && apt-get autoclean -y && apt-get clean -y \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
- && npm cache clean
+ && npm cache clean --force
  
 VOLUME /workspace
 EXPOSE 8181 
