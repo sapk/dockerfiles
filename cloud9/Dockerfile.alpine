@@ -14,6 +14,7 @@ RUN apk -U --no-cache --no-progress upgrade \
  && ln -sf "`which tmux`" ./bin/tmux \		
  && ln -s "`which node`" ./node/bin/node \		
  && ln -s "`which npm`" ./node/bin/npm \
+ && npm install pty.js \
  && echo 1 > ./installed \
  && NO_PULL=1 ./scripts/install-sdk.sh \
  && npm cache clean --force && rm -rf /var/cache/apk/* /tmp/* /var/tmp/* \
