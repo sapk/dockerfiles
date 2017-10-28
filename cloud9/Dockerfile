@@ -21,4 +21,4 @@ VOLUME /workspace
 EXPOSE 8181 
 ENTRYPOINT ["forever", "/cloud9/server.js", "-w", "/workspace", "--listen", "0.0.0.0"]
 
-CMD["--auth","c9:c9"]
+CMD ["--auth","c9:c9"]
