@@ -8,7 +8,7 @@ MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
 RUN buildDeps='make build-essential g++ gcc python2.7' && softDeps="tmux git" \
  && apt-get update && apt-get upgrade -y \
  && apt-get install -y $buildDeps $softDeps --no-install-recommends \
- && npm install -g forever && npm cache clean \
+ && npm install -g forever && npm cache clean --force \
  && git clone https://github.com/c9/core.git /cloud9 && cd /cloud9 \
  && scripts/install-sdk.sh \
  && apt-get purge -y --auto-remove $buildDeps \
