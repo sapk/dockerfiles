@@ -3,7 +3,7 @@
 #                   https://hub.docker.com/r/kdelfour/cloud9-docker/~/dockerfile/
 
 FROM node:slim
-MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
+LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
 
 RUN buildDeps='make build-essential g++ gcc python2.7' && softDeps="tmux git" \
  && apt-get update && apt-get upgrade -y \
