@@ -9,7 +9,7 @@ ENV PACMAN_MIRRORLIST="Server = https://mirrors.kernel.org/archlinux/\$repo/os/\
 #ENV BOOTSTRAP="./archlinux-bootstrap-${VERSION}-x86_64.tar.gz" 
 #COPY $BOOTSTRAP /bootstrap.tar.gz
 ADD $BOOTSTRAP /bootstrap.tar.gz
-
+#TODO verify sig 
 
 WORKDIR /
 RUN tar xzvf /bootstrap.tar.gz
@@ -26,9 +26,9 @@ COPY --from=builder /root.x86_64/ /
 # TODO use haveged to generate entropy
 RUN pacman-key --init \
  && pacman-key --populate archlinux \
- && pacman -Sy sed \
- && pacman -Rs device-mapper systemd \
- && pacman -R arch-install-scripts \
+ && pacman -Sy --noconfirm sed \
+ && pacman -Rs --noconfirm device-mapper systemd \
+ && pacman -R --noconfirm arch-install-scripts \
  && pacman -Syu --noconfirm \
  && pacman -Q \
  && pacman -Scc --noconfirm \
