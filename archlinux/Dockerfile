@@ -1,18 +1,46 @@
-FROM base/archlinux
+#Inspired by https://github.com/finalduty/docker-archlinux/blob/master/mkdocker-archlinux.sh && https://github.com/moby/moby/blob/master/contrib/mkimage-arch.sh
+FROM alpine AS builder
 
-#Inspired from https://github.com/finalduty/docker-archlinux/blob/master/mkdocker-archlinux.sh
-ENV ROOTFS="/tmp/archroot" PKGS="filesystem bash coreutils file findutils gettext bzip2 glibc grep gzip inetutils iproute2 iputils less licenses pacman pciutils perl shadow sed sysfsutils tar texinfo which"
+ENV VERSION="2018.05.01" 
+ENV BOOTSTRAP="https://archive.archlinux.org/iso/${VERSION}/archlinux-bootstrap-${VERSION}-x86_64.tar.gz" 
 
-RUN mkdir -p $ROOTFS \
- && pacman -Syu --noconfirm \
- && pacstrap -c -d -G $ROOTFS $PKGS $PACMAN_EXTRA_PKGS
+ENV PACMAN_MIRRORLIST="Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch"
+ 
+#ENV BOOTSTRAP="./archlinux-bootstrap-${VERSION}-x86_64.tar.gz" 
+#COPY $BOOTSTRAP /bootstrap.tar.gz
+ADD $BOOTSTRAP /bootstrap.tar.gz
 
-FROM scratch 
+
+WORKDIR /
+RUN tar xzvf /bootstrap.tar.gz
+
+WORKDIR /root.x86_64
+RUN echo 'en_US.UTF-8 UTF-8' > ./etc/locale.gen \
+ && echo $PACMAN_MIRRORLIST > ./etc/pacman.d/mirrorlist
+
+FROM scratch AS cleaner
 LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
 
-COPY --from=builder /tmp/archroot /
-SHELL ["/bin/sh", "-c"]
+COPY --from=builder /root.x86_64/ /
 
-#RUN pacman -Syu --noconfirm -; pacman -Scc --noconfirm; rm -r /usr/share/man/*; rm -r /usr/share/locale/* 
+# TODO use haveged to generate entropy
+RUN pacman-key --init \
+ && pacman-key --populate archlinux \
+ && pacman -Sy sed \
+ && pacman -Rs device-mapper systemd \
+ && pacman -R arch-install-scripts \
+ && pacman -Syu --noconfirm \
+ && pacman -Q \
+ && pacman -Scc --noconfirm \
+ && rm -r ./usr/share/man/* \
+ && ls -d ./usr/share/locale/* | egrep -v "en_U|alias" | xargs rm -rf
+ 
+# && pacman -Sy --noconfirm --debug sed haveged \
+# && locale-gen
+
+FROM scratch
+LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
+
+COPY --from=cleaner / /
+
 #ONBUILD RUN pacman -Syu --noconfirm -; pacman -Scc --noconfirm; rm -r /usr/share/man/*; rm -r /usr/share/locale/* 
-CMD /bin/bash
