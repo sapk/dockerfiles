@@ -32,10 +32,12 @@ RUN pacman-key --init \
  && pacman -Syu --noconfirm \
  && pacman -Q \
  && pacman -Scc --noconfirm \
- && rm -r /usr/share/man/* \
+ && rm -r /usr/share/man/* /usr/share/doc/* \
  && ls -d /usr/share/locale/* | egrep -v "en_U|alias" | xargs rm -rf
  
 # && locale-gen
+#rm /usr/lib/libgo.so.13.0.0 /usr/lib/libgfortran.so.5.0.0
+
 
 FROM scratch
 LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
