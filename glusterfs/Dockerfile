@@ -1,4 +1,4 @@
-FROM finalduty/archlinux:daily
+FROM sapk/archlinux
 LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
 
 RUN pacman -Sy --noconfirm glusterfs \
