@@ -26,16 +26,15 @@ COPY --from=builder /root.x86_64/ /
 # TODO use haveged to generate entropy
 RUN pacman-key --init \
  && pacman-key --populate archlinux \
- && pacman -Sy --noconfirm sed \
+ && pacman -Sy --noconfirm sed grep \
  && pacman -Rs --noconfirm device-mapper systemd \
  && pacman -R --noconfirm arch-install-scripts \
  && pacman -Syu --noconfirm \
  && pacman -Q \
  && pacman -Scc --noconfirm \
- && rm -r ./usr/share/man/* \
- && ls -d ./usr/share/locale/* | egrep -v "en_U|alias" | xargs rm -rf
+ && rm -r /usr/share/man/* \
+ && ls -d /usr/share/locale/* | egrep -v "en_U|alias" | xargs rm -rf
  
-# && pacman -Sy --noconfirm --debug sed haveged \
 # && locale-gen
 
 FROM scratch
