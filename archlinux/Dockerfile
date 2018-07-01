@@ -43,5 +43,6 @@ FROM scratch
 LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
 
 COPY --from=cleaner / /
+ENTRYPOINT /bin/bash 
 
 #ONBUILD RUN pacman -Syu --noconfirm -; pacman -Scc --noconfirm; rm -r /usr/share/man/*; rm -r /usr/share/locale/* 
