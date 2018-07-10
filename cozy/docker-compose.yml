@@ -1,0 +1,42 @@
+version: '3'
+services:
+  couchdb:
+    image: couchdb
+    restart: unless-stopped
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    environment:
+      - COUCHDB_USER=cozy
+      - COUCHDB_PASSWORD=cozy
+    volumes:
+      - ./data/couchdb:/opt/couchdb/data
+#TODO  -X PUT http://127.0.0.1:5984/{_users,_replicator,_global_changes}
+#TODO config by https://hub.docker.com/_/couchdb/ Using your own CouchDB configuration file and build
+  stack:
+    image: cozy-stack
+    build: ./build
+    restart: unless-stopped
+    depends_on:
+      - couchdb
+    ports:
+      - "8080:8080"
+      - "6060:6060"
+#TODO don't expose direclty but by traefik
+    command:
+      - serve
+      - --fs-url=file://localhost/var/lib/cozy
+      - --host=0.0.0.0
+      - --admin-host=0.0.0.0
+      - --couchdb-url=http://cozy:cozy@couchdb:5984
+      - --geodb=/var/lib/libmaxminddb/GeoLite2-City.mmdb
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+#    volumes:
+#      - ./data/couchdb:/opt/couchdb/data
+
+
+#TODO add redis
