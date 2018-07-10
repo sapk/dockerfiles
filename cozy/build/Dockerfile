@@ -38,6 +38,7 @@ COPY --from=build-env /go/bin/cozy-stack /usr/local/bin/cozy-stack
 USER cozy
 ENTRYPOINT ["/usr/local/bin/cozy-stack"]
 CMD ["serve", "--fs-url=file://localhost/var/lib/cozy","--host=0.0.0.0", "--admin-host=0.0.0.0", "--geodb=/var/lib/libmaxminddb/GeoLite2-City.mmdb"]
+VOLUME ["/var/lib/cozy"]
 EXPOSE 8080 6060
 
 #TODO output logs to /var/log/cozy

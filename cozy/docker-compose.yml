@@ -20,10 +20,15 @@ services:
     restart: unless-stopped
     depends_on:
       - couchdb
-    ports:
-      - "8080:8080"
-      - "6060:6060"
-#TODO don't expose direclty but by traefik
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.protocol=http"
+        - "traefik.port=8080"
+    volumes:
+      - ./data/cozy:/var/lib/cozy
     command:
       - serve
       - --fs-url=file://localhost/var/lib/cozy
@@ -35,8 +40,7 @@ services:
       replicas: 1
       restart_policy:
         condition: on-failure
-#    volumes:
-#      - ./data/couchdb:/opt/couchdb/data
 
 
 #TODO add redis
+#cozy-stack instances add localhost:8080 --dev --locale fr --apps onboarding,settings,drive,photos,collect --email mon@email.fr --passphrase pass
