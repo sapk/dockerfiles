@@ -36,11 +36,6 @@ services:
       - --admin-host=0.0.0.0
       - --couchdb-url=http://cozy:cozy@couchdb:5984
       - --geodb=/var/lib/libmaxminddb/GeoLite2-City.mmdb
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-
 
 #TODO add redis
 #cozy-stack instances add localhost:8080 --dev --locale fr --apps onboarding,settings,drive,photos,collect --email mon@email.fr --passphrase pass

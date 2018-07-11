@@ -42,3 +42,4 @@ VOLUME ["/var/lib/cozy"]
 EXPOSE 8080 6060
 
 #TODO output logs to /var/log/cozy
+#HEALTHCHECK
