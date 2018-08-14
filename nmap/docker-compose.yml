@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nmap:
+    build: .
+    image: sapk/nmap
+    depends_on:
+      - tor
+  tor:
+    image: "jess/tor-proxy"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
+#docker-compose run nmap proxychains nmap -p 2020 0.0.0.0/0
