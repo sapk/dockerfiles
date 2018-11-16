@@ -1,7 +1,7 @@
 #Inspired by https://github.com/finalduty/docker-archlinux/blob/master/mkdocker-archlinux.sh && https://github.com/moby/moby/blob/master/contrib/mkimage-arch.sh
 FROM alpine AS builder
 
-ENV VERSION="2018.10.01" 
+ENV VERSION="2018.11.01" 
 ENV BOOTSTRAP="https://archive.archlinux.org/iso/${VERSION}/archlinux-bootstrap-${VERSION}-x86_64.tar.gz" 
 
 ENV PACMAN_MIRRORLIST="Server = https://mirrors.kernel.org/archlinux/\$repo/os/\$arch"
