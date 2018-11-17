@@ -1,0 +1,57 @@
+FROM sapk/archlinux AS builder
+
+ENV ARCH="arm"
+ENV QEMU_ARCH="arm"
+ENV QEMU_VERSION="v3.0.0"
+ENV REPO="http://mirror.archlinuxarm.org"
+
+#Deps (based on https://github.com/multiarch/qemu-user-static/blob/master/register/Dockerfile)
+ADD https://github.com/tokland/arch-bootstrap/raw/master/arch-bootstrap.sh /usr/local/bin/arch-bootstrap
+#ADD https://raw.githubusercontent.com/qemu/qemu/master/scripts/qemu-binfmt-conf.sh /qemu-binfmt-conf.sh
+#ADD https://github.com/multiarch/qemu-user-static/raw/master/register/register.sh  /register
+RUN pacman -Sy --noconfirm tar \
+ && chmod +x /usr/local/bin/arch-bootstrap
+  #\
+# && chmod +x /usr/local/bin/arch-bootstrap /qemu-binfmt-conf.sh /register # \
+# && /register
+#TODO skip docker run --rm --privileged multiarch/qemu-user-static:register
+
+RUN curl -o /usr/bin/qemu-$QEMU_ARCH-static -sL https://github.com/multiarch/qemu-user-static/releases/download/$QEMU_VERSION/qemu-$QEMU_ARCH-static \
+ && chmod +x /usr/bin/qemu-$QEMU_ARCH-static && ls -lah /usr/bin/qemu*
+
+#Build root
+RUN sed -i "s/\/usr\/bin\/pacman/\/usr\/bin\/qemu-$QEMU_ARCH-static \/usr\/bin\/pacman/g" /usr/local/bin/arch-bootstrap \
+ && mkdir -p /root.arch/usr/bin/ && cp -a /usr/bin/qemu-$QEMU_ARCH-static /root.arch/usr/bin/qemu-$QEMU_ARCH-static \
+ && arch-bootstrap -q -a $ARCH -r "$REPO" /root.arch
+
+#Some config
+WORKDIR /root.arch
+RUN echo 'en_US.UTF-8 UTF-8' > ./etc/locale.gen
+
+FROM scratch AS cleaner
+
+COPY --from=builder /root.arch/ /
+COPY --from=builder /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
+
+# TODO use haveged to generate entropy
+RUN /usr/bin/qemu-arm-static pacman-key --init \
+ && /usr/bin/qemu-arm-static pacman-key --populate archlinux \
+ && /usr/bin/qemu-arm-static pacman -Sy --noconfirm sed grep \
+ && /usr/bin/qemu-arm-static pacman -Rs --noconfirm device-mapper systemd \
+ && /usr/bin/qemu-arm-static pacman -Syu --noconfirm \
+ && /usr/bin/qemu-arm-static pacman -Q \
+ && /usr/bin/qemu-arm-static pacman -Scc --noconfirm \
+ && /usr/bin/qemu-arm-static rm -r /usr/share/man/* /usr/share/doc/* \
+ && /usr/bin/qemu-arm-static ls -d /usr/share/locale/* | /usr/bin/qemu-arm-static egrep -v "en_U|alias" | /usr/bin/qemu-arm-static xargs rm -rf
+ 
+# && locale-gen
+#rm /usr/lib/libgo.so.13.0.0 /usr/lib/libgfortran.so.5.0.0
+
+
+FROM scratch
+LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
+
+COPY --from=cleaner / /
+ENTRYPOINT /bin/bash 
+
+#ONBUILD RUN pacman -Syu --noconfirm -; pacman -Scc --noconfirm; rm -r /usr/share/man/*; rm -r /usr/share/locale/* 
