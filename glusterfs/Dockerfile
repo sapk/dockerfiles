@@ -1,4 +1,4 @@
-FROM sapk/archlinux
+FROM sapk/archlinux:root.x86_64
 LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
 
 RUN pacman -Sy --noconfirm glusterfs \
