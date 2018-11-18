@@ -5,7 +5,7 @@
 # depends on : pacman curl sed tar awk sort
 # optional: xz
 # 
-PACKAGES=(readline ncurses acl archlinux-keyring attr bzip2 curl expat glibc gpgme libarchive libassuan libgpg-error libnghttp2 libssh2 lzo openssl pacman pacman-mirrorlist xz zlib krb5 e2fsprogs keyutils libidn2 libunistring gcc-libs lz4 libpsl icu zstd filesystem coreutils bash grep gawk file tar sed p11-kit libtasn1 ca-certificates-mozilla ca-certificates-utils ca-certificates findutils)
+PACKAGES=(readline ncurses acl archlinux-keyring attr bzip2 curl expat glibc gpgme libarchive libassuan libgpg-error libnghttp2 libssh2 lzo openssl pacman pacman-mirrorlist xz zlib krb5 e2fsprogs keyutils libidn2 libunistring gcc-libs lz4 libpsl icu zstd filesystem coreutils bash grep gawk file tar sed p11-kit libtasn1 libffi ca-certificates-mozilla ca-certificates-utils ca-certificates findutils)
 #PACKAGES_TO_INSTALL=(ca-certificates readline ncurses acl archlinux-keyring attr bzip2 curl expat glibc gpgme libarchive libassuan libgpg-error libnghttp2 libssh2 lzo openssl pacman pacman-mirrorlist xz zlib krb5 e2fsprogs keyutils libidn2 libpsl icu filesystem coreutils bash grep gawk file sed tar)
 
 #Env config
