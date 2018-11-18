@@ -1,5 +1,7 @@
-New version support building for various arch. (Soon latest will become multi-arch).
-Each arch contain it qemu-binary so it possible to run any arch by setting qemu binding before with:
+A small Archlinux multi-arch build :latest and an automated build from latest root tar :root.x86_64
+
+New version support building for various arch. (latest is multi-arch).
+Each arch contain it own qemu-binary so it possible to run any arch by setting qemu binding before with:
 `docker run --rm --privileged multiarch/qemu-user-static:register --reset`
 New version is ultra small (under 100MB) because it is rebuild with minimal packages via a build stage.
 
