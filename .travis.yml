@@ -15,7 +15,7 @@ before_script:
   - go get -u -v github.com/estesp/manifest-tool
   
 script:
-  - bash gitea/build.sh
+  - bash archlinux/build.sh
 
 after_success:
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi.yml

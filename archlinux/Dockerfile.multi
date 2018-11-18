@@ -1,4 +1,5 @@
 FROM sapk/archlinux AS builder
+#As backup plan FROM sapk/archlinux:root.x86_64 AS builder
 
 ARG ARCH="arm"
 ARG REPO="http://mirror.archlinuxarm.org/arm/\$repo"
