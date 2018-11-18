@@ -15,9 +15,10 @@ before_script:
   - go get -u -v github.com/estesp/manifest-tool
   
 script:
-  - bash archlinux/build.sh
+  - cd archlinux && ./build.sh
 
 after_success:
+  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/archlinux-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-edge.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-3-5.yml

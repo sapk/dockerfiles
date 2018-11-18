@@ -1,0 +1,29 @@
+image: sapk/archlinux:latest
+manifests:
+  - image: sapk/archlinux:x86_64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: sapk/archlinux:i686
+    platform:
+      architecture: 386
+      os: linux
+  - image: sapk/archlinux:arm
+    platform:
+      architecture: arm
+      os: linux
+      variant: v5
+  - image: sapk/archlinux:armv6h
+    platform:
+      architecture: arm
+      os: linux
+      variant: v6
+  - image: sapk/archlinux:armv7h
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
+  - image: sapk/archlinux:aarch64
+    platform:
+      architecture: arm64
+      os: linux
