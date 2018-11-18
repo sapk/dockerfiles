@@ -21,8 +21,7 @@ RUN BASE=/root.arch ./setup-root.sh \
 FROM scratch
 LABEL maintainer Antoine GIRARD <antoine.girard@sapk.fr>
 
-#COPY --from=cleaner / /
 COPY --from=builder /root.arch/ /
-ENTRYPOINT ["/bin/bash"] 
+#ENTRYPOINT ["/bin/bash"] 
 
 #ONBUILD RUN pacman -Syu --noconfirm -; pacman -Scc --noconfirm; rm -r /usr/share/man/*; rm -r /usr/share/locale/* 

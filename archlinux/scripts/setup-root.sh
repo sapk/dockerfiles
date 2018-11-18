@@ -5,8 +5,8 @@
 # depends on : pacman curl sed tar awk sort
 # optional: xz
 # 
-PACKAGES=(ca-certificates acl archlinux-keyring attr bzip2 curl expat glibc gpgme libarchive libassuan libgpg-error libnghttp2 libssh2 lzo openssl pacman pacman-mirrorlist xz zlib krb5 e2fsprogs keyutils libidn2 libunistring gcc-libs lz4 libpsl icu zstd filesystem coreutils bash grep gawk file tar sed)
-PACKAGES_TO_INSTALL=(ca-certificates acl archlinux-keyring attr bzip2 curl expat glibc gpgme libarchive libassuan libgpg-error libnghttp2 libssh2 lzo openssl pacman pacman-mirrorlist xz zlib krb5 e2fsprogs keyutils libidn2 libpsl icu filesystem coreutils bash grep gawk file sed tar)
+PACKAGES=(ca-certificates readline ncurses acl archlinux-keyring attr bzip2 curl expat glibc gpgme libarchive libassuan libgpg-error libnghttp2 libssh2 lzo openssl pacman pacman-mirrorlist xz zlib krb5 e2fsprogs keyutils libidn2 libunistring gcc-libs lz4 libpsl icu zstd filesystem coreutils bash grep gawk file tar sed)
+#PACKAGES_TO_INSTALL=(ca-certificates readline ncurses acl archlinux-keyring attr bzip2 curl expat glibc gpgme libarchive libassuan libgpg-error libnghttp2 libssh2 lzo openssl pacman pacman-mirrorlist xz zlib krb5 e2fsprogs keyutils libidn2 libpsl icu filesystem coreutils bash grep gawk file sed tar)
 
 #Env config
 BASE=${BASE:-'./'}
@@ -99,7 +99,9 @@ main() {
 
     #Reinstall via pacman to populate databases
     sed -i "s/^#XferCommand[[:space:]]*=.*$/XferCommand = \/usr\/bin\/true/" "$BASE/etc/pacman.conf"
-    pacman --sysroot $BASE --arch $ARCH --noconfirm -dd --overwrite "*" -S "${PACKAGES_TO_INSTALL[@]}"
+    for PACKAGE in "${PACKAGES[@]}"; do
+         pacman --sysroot $BASE --arch $ARCH --noconfirm -dd --overwrite "*" -S "$PACKAGE" || true
+    done
     #pacman --sysroot $BASE --arch $ARCH --noconfirm -dd --overwrite "*" -S libunistring gcc-libs lz4 zstd 
     #pacman --sysroot $BASE --arch $ARCH --noconfirm -dd --dbonly --overwrite "*" -S libunistring gcc-libs lz4 zstd 
     sed -i "s/^XferCommand = \/usr\/bin\/true$//" "$BASE/etc/pacman.conf"
