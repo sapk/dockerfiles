@@ -12,18 +12,19 @@ manifests:
     platform:
       architecture: arm
       os: linux
-      variant: v5
+      variant: armv5
   - image: sapk/archlinux:armv6h
     platform:
       architecture: arm
       os: linux
-      variant: v6
+      variant: armv6
   - image: sapk/archlinux:armv7h
     platform:
       architecture: arm
       os: linux
-      variant: v7
+      variant: armv7
   - image: sapk/archlinux:aarch64
     platform:
       architecture: arm64
       os: linux
+      variant: armv8
