@@ -1,6 +1,10 @@
 # Cloud9 server
 # A lot inspired by https://hub.docker.com/r/gai00/cloud9/~/dockerfile/
 #                   https://hub.docker.com/r/kdelfour/cloud9-docker/~/dockerfile/
+#
+# Notes: 
+# This dockerfile may not work on RPi you can find more info on how make it work on this issue:
+# https://github.com/sapk/dockerfiles/issues/40
 
 FROM node:slim
 LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
