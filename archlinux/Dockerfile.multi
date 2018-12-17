@@ -12,7 +12,7 @@ RUN curl -o /usr/bin/qemu-$QEMU_ARCH-static -sL https://github.com/multiarch/qem
  && chmod +x /usr/bin/qemu-$QEMU_ARCH-static
 
 #Deps
-RUN pacman -Syu --noconfirm tar
+RUN pacman -Syu --noconfirm tar || echo "ignore error"
 
 #Setup root
 ADD ./scripts/setup-root.sh setup-root.sh
