@@ -20,6 +20,7 @@ script:
   - (cd archlinux && ./build.sh)
 
 after_success:
+  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec gitea/gitea-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec archlinux/archlinux-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-edge.yml
