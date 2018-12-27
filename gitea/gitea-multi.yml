@@ -8,7 +8,7 @@ manifests:
     platform:
       architecture: arm
       os: linux
-  - image: sapk/gitea:aarch64
+  - image: sapk/gitea:arm64
     platform:
       architecture: arm64
       os: linux
