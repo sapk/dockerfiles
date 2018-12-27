@@ -16,6 +16,7 @@ before_script:
   - go get -u -v github.com/estesp/manifest-tool
   
 script:
+  - (cd gitea && ./build.sh)
   - (cd archlinux && ./build.sh)
 
 after_success:
