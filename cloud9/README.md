@@ -2,7 +2,13 @@
 
 A Cloud9 instance with latest version from https://github.com/c9/core
 
+The goal is to provide the lightest possible image. 
+
+Latest is build on node:slim. 
+Other tags exist ready for some programming language ([alpine](https://github.com/sapk/dockerfiles/blob/master/cloud9/Dockerfile.alpine), [golang](https://github.com/sapk/dockerfiles/blob/master/cloud9/Dockerfile.golang), [golang-alpine](https://github.com/sapk/dockerfiles/blob/master/cloud9/Dockerfile.golang.alpine), [cordova-android](https://github.com/sapk/dockerfiles/blob/master/cloud9/Dockerfile.cordova-android)).
+
 Docker hub: https://registry.hub.docker.com/u/sapk/cloud9/
+
 ## Usage
 
 ### Start with auth
