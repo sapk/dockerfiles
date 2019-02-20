@@ -27,4 +27,4 @@ Where /home/user/c9.settings is the user.settings file on your file system
 
 If you want to only expose cloud9 localy use -p 127.0.0.1:8181:8181 instead of -p 8181:8181. Otherwise it will be accesible to any equipement that can acces to your PC through the network.
 
-You need to set auth because if not set the server will only listen to inner-container localhost host and woulndn't be available to the host.
+You need to set auth because if not set the server will only listen to inner-container localhost host and wouldn't be available to the host.
