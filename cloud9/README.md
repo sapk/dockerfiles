@@ -1,4 +1,6 @@
-#Cloud9 instance
+# Cloud9 instance
+
+A Cloud9 instance with latest version from https://github.com/c9/core
 
 Docker hub: https://registry.hub.docker.com/u/sapk/cloud9/
 ## Usage
