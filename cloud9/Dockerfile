@@ -9,9 +9,12 @@
 FROM node:slim
 LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
 
-RUN buildDeps='make build-essential g++ gcc python2.7' && softDeps="tmux git" \
+ENV LANG=en_US.UTF-8
+
+RUN buildDeps='make build-essential g++ gcc python2.7 locales' && softDeps="tmux git" \
  && apt-get update && apt-get upgrade -y \
  && apt-get install -y $buildDeps $softDeps --no-install-recommends \
+ && locale-gen en_US.UTF-8 \
  && npm install -g forever && npm cache clean --force \
  && git clone --depth=5 https://github.com/c9/core.git /cloud9 && cd /cloud9 \
  && scripts/install-sdk.sh \
