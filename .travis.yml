@@ -10,6 +10,9 @@ before_install:
   - sudo apt-get update
   - sudo apt-get -y install docker-ce
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - mkdir -p ~/.docker/cli-plugins
+  - wget -O ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/v0.2.0/buildx-v0.2.0.linux-amd64
+  - chmod +x ~/.docker/cli-plugins/docker-buildx
   
 before_script:
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; fi
