@@ -2,7 +2,7 @@
 # A lot inspired by https://hub.docker.com/_/golang/ (near similar instruction but based on cloud9, GOPATH /workspace)
 
 FROM sapk/cloud9
-MAINTAINER Antoine GIRARD <antoine.girard@sapk.fr>
+LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
 
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
