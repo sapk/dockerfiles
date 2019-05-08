@@ -27,7 +27,7 @@ COPY --from=builder /root.x86_64/ /
 RUN pacman-key --init \
  && pacman-key --populate archlinux \
  && pacman -Sy --noconfirm sed grep \
- && pacman -Rs --noconfirm device-mapper systemd \
+ && pacman -Rs --noconfirm device-mapper \
  && pacman -R --noconfirm arch-install-scripts \
  && pacman -Syu --noconfirm \
  && pacman -Q \
@@ -35,6 +35,7 @@ RUN pacman-key --init \
  && rm -r /usr/share/man/* /usr/share/doc/* \
  && ls -d /usr/share/locale/* | egrep -v "en_U|alias" | xargs rm -rf
  
+# && pacman -Rs --noconfirm device-mapper systemd \
 # && locale-gen
 #rm /usr/lib/libgo.so.13.0.0 /usr/lib/libgfortran.so.5.0.0
 
