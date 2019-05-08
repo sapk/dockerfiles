@@ -4,7 +4,7 @@ FROM sapk/archlinux AS builder
 ARG ARCH="arm"
 ARG REPO="http://mirror.archlinuxarm.org/arm/\$repo"
 ARG QEMU_ARCH="arm"
-ARG QEMU_VERSION="v3.0.0"
+ARG QEMU_VERSION="v4.0.0"
 
 #setup before docker run --rm --privileged multiarch/qemu-user-static:register --reset
 # Qemu binaries
