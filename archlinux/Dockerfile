@@ -27,7 +27,6 @@ COPY --from=builder /root.x86_64/ /
 RUN pacman-key --init \
  && pacman-key --populate archlinux \
  && pacman -Sy --noconfirm sed grep \
- && pacman -Rs --noconfirm device-mapper \
  && pacman -R --noconfirm arch-install-scripts \
  && pacman -Syu --noconfirm \
  && pacman -Q \
