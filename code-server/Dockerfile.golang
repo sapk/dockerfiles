@@ -2,6 +2,7 @@
 FROM sapk/code-server
 LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
 
+USER root
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		g++ \
