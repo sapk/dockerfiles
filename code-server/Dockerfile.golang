@@ -1,7 +1,5 @@
-# Cloud9 server for glang dev
-# A lot inspired by https://hub.docker.com/_/golang/ (near similar instruction but based on cloud9, GOPATH /workspace)
-
-FROM sapk/cloud9
+# A lot inspired by https://hub.docker.com/_/golang/ (near similar instruction but based on code-server, GOPATH /workspace)
+FROM sapk/code-server
 LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
 
 # gcc for cgo
@@ -20,7 +18,10 @@ ENV GOPATH /workspace
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
 RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
-	&& echo "$GOLANG_DOWNLOAD_SHA256  golang.tar.gz" | sha256sum -c - \
-	&& tar -C /usr/local -xzf golang.tar.gz \
-	&& echo 'export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH' >> /root/.bashrc \
-	&& rm golang.tar.gz 
+&& echo "$GOLANG_DOWNLOAD_SHA256 golang.tar.gz" | sha256sum -c - \
+&& tar -C /usr/local -xzf golang.tar.gz \
+&& echo 'export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH' >> /root/.bashrc \
+&& rm golang.tar.gz
+
+USER coder
+RUN echo 'export PATH=$GOPATH/bin:/usr/local/go/bin:$PATH' >> /home/coder/.bashrc \

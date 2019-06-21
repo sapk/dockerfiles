@@ -1,0 +1,7 @@
+FROM sapk/code-server:alpine
+LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
+USER root
+RUN apk -U --no-cache --force --no-progress add go
+ENV GOPATH /workspace
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+USER coder
