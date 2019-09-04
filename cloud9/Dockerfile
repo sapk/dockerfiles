@@ -22,7 +22,7 @@ ENV LC_ALL=en_US.UTF-8
 ENV LC_CTYPE=en_US.UTF-8
 ENV LANGUAGE=en_US.UTF-8
 
-RUN buildDeps='make build-essential g++ gcc python2.7' && softDeps="tmux git" \
+RUN buildDeps='make build-essential g++ gcc python2.7' && softDeps="tmux git zip" \
  && apt-get update && apt-get upgrade -y \
  && apt-get install -y $buildDeps $softDeps --no-install-recommends \
  && npm install -g forever && npm cache clean --force \
