@@ -6,7 +6,7 @@ FROM node:8-alpine
 LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
  
 RUN apk -U --no-cache --no-progress upgrade \
- && apk -U --no-cache --force --no-progress add bash tmux git make gcc g++ python sqlite wget openssl ca-certificates \
+ && apk -U --no-cache --force --no-progress add bash tmux git make gcc g++ python sqlite wget openssl ca-certificates zip \
  && npm install -g forever && npm cache clean --force \
  && git clone --depth=5 https://github.com/c9/core.git /root/.c9 && cd /root/.c9 \
  && npm install pty.js \
