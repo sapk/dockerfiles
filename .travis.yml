@@ -16,12 +16,10 @@ before_script:
   - go get -u -v github.com/estesp/manifest-tool
   
 script:
-  - (cd gitea && ./build.sh)
   - (cd archlinux && ./build.sh)
-  - (cd gitea && rm -Rf gitea && ./buildx.sh)
+  - (cd gitea && ./buildx.sh)
 
 after_success:
-  - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec gitea/gitea-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec archlinux/archlinux-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi.yml
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec alpine-multi/alpine-multi-edge.yml
