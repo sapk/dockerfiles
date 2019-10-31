@@ -11,4 +11,4 @@ git clone https://github.com/go-gitea/gitea --depth 10
 cd gitea
 
 #Building
-docker buildx build --push --platform=linux/amd64,linux/arm64,linux/arm/v6 .
+docker buildx build -t sapk/gitea --push --platform=linux/amd64,linux/arm64,linux/arm/v6 .
