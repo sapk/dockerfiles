@@ -17,7 +17,7 @@ before_script:
   
 script:
   - (cd archlinux && ./build.sh)
-  - (cd gitea && ./buildx.sh)
+  - (cd gitea && chmod +x ./buildx.sh && ./buildx.sh)
 
 after_success:
   - $GOPATH/bin/manifest-tool --docker-cfg $HOME/.docker/ push from-spec archlinux/archlinux-multi.yml
