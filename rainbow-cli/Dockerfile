@@ -12,6 +12,7 @@ LABEL org.label-schema.schema-version = 1.0.0 \
 RUN npm install -g rainbow-cli && mkdir /data
 
 ENV HOME=/data
+VOLUME ["/data/.config/preferences"]
 
 ENTRYPOINT [ "/usr/local/bin/rbw" ]
 CMD [ "--help" ]
