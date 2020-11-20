@@ -2,7 +2,7 @@
 # A lot inspired by https://hub.docker.com/r/gai00/cloud9/~/dockerfile/
 #                   https://hub.docker.com/r/kdelfour/cloud9-docker/~/dockerfile/
 
-FROM node:8-alpine
+FROM node:alpine
 LABEL maintainer="Antoine GIRARD <antoine.girard@sapk.fr>"
  
 RUN apk -U --no-cache --no-progress upgrade \
